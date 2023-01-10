@@ -1,0 +1,5 @@
+Una vez clonado el repositorio, hacer los siguientes pasos:
+
+git init
+git remote set-url origin https://github.com/RobTangle/Resourcify-FRONTEND
+git remote -v
