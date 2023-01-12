@@ -1,12 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { NAME_ACCESS_TOKEN } from "../../helpers/constants";
-import { signInFormMX, signUpFormMX } from "../../helpers/swals";
 import LoginButton from "../login-button/LoginButton";
 import LogoutButton from "../logout-button/LogoutButton";
 import { SigninModal } from "../signinModal/SigninModal";
 
-export function Navbar({ isLoggedIn, setIsLoggedIn }) {
+export function Navbar({ isLoggedIn }) {
   const [token, setToken] = useState(false);
 
   React.useEffect(() => {
@@ -18,46 +17,21 @@ export function Navbar({ isLoggedIn, setIsLoggedIn }) {
 
   React.useEffect(() => {
     console.log("Navbar renderizada. useEffect");
-    // if (!token) {
-    //   setToken(localStorage.getItem(NAME_ACCESS_TOKEN));
-    // }
   }, [token]);
-
-  const handleSignin = (e) => {
-    e.preventDefault();
-    signInFormMX(setToken, setIsLoggedIn).fire();
-  };
-
-  function handleSignup(e) {
-    e.preventDefault();
-    signUpFormMX.fire();
-  }
-
-  function handleLogOut(e) {
-    e.preventDefault();
-    localStorage.removeItem(NAME_ACCESS_TOKEN);
-    setToken(false);
-    setIsLoggedIn(false);
-  }
 
   return (
     <div className="navbar">
-      <LoginButton />
-      <LogoutButton />
       {isLoggedIn ? (
         <>
           <h3>Welcome! </h3>
-          <button onClick={handleLogOut}>Log out</button>
+          <LogoutButton />
         </>
       ) : (
         <>
           <SigninModal />
-          <button onClick={handleSignin}>Sign In</button>
-          <button onClick={handleSignup}>Sign Up</button>
+          <LoginButton />
         </>
       )}
-      {/* <button onClick={handleSignin}>Sign In</button>
-      <button onClick={handleSignup}>Sign Up</button> */}
     </div>
   );
 }

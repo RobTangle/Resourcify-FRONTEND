@@ -10,6 +10,7 @@ export function NewResource({ isLoggedIn }) {
     description: "",
     link: "",
     category: "",
+    order: 0,
     keywords: "", // antes de enviar el post, hacer un split(" ")
   });
 
@@ -49,6 +50,8 @@ export function NewResource({ isLoggedIn }) {
               <input type="text" id="link" onChange={handleOnChange} />
               <label htmlFor="category">Category</label>
               <input type="text" id="category" onChange={handleOnChange} />
+              <label htmlFor="order">Order</label>
+              <input type="number" />
               <label htmlFor="keywords">Keywords</label>
               <input type="text" id="keywords" onChange={handleOnChange} />
               <button>Save</button>

@@ -1,29 +1,32 @@
 import React from "react";
 import { Card } from "../card/Card";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchAllResources } from "../../redux/features/resource";
+import { getOrCreateUser } from "../../redux/features/user/userThunk";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export function MyResources({ isLoggedIn }) {
   const dispatch = useDispatch();
-  const resourcesState = useSelector((state) => state.resource.allResources);
+  const userResourcesState = useSelector(
+    (state) => state.user?.userProfile?.user?.resources
+  );
 
-  React.useEffect(() => {
-    if (isLoggedIn) {
-      dispatch(fetchAllResources());
-    }
-  }, []);
+  const { getAccessTokenSilently } = useAuth0();
 
   function handleRefresh() {
-    dispatch(fetchAllResources());
-    console.log("all resources fetched!");
+    async function getUserProfileAgain() {
+      const accessToken = await getAccessTokenSilently();
+      dispatch(getOrCreateUser(accessToken));
+      console.log("all resources fetched!");
+    }
+    getUserProfileAgain();
   }
 
   return (
     <>
       {isLoggedIn === true && (
-        <div className="my-resources-container">
+        <div className="mt-5">
           <hr />
-          {resourcesState?.length === 0 && (
+          {userResourcesState?.length === 0 && (
             <>
               <button onClick={handleRefresh}>Refresh</button>
               <h3>
@@ -32,12 +35,12 @@ export function MyResources({ isLoggedIn }) {
               </h3>
             </>
           )}
-          {resourcesState.length > 0 && (
+          {userResourcesState?.length > 0 && (
             <>
               <h2>My resources </h2>
               <button onClick={handleRefresh}>Refresh</button>
               <div className="flex flex-row flex-wrap">
-                {resourcesState.map((resource) => {
+                {userResourcesState.map((resource) => {
                   return <Card resource={resource} key={Math.random()} />;
                 })}
               </div>
