@@ -1,5 +1,5 @@
 import Swal from "sweetalert2";
-import { URL_SERVER } from "./constants";
+import { URL_SERVER } from "./URLs";
 import axios from "axios";
 
 export const signInFormMX = (setToken, setIsLoggedIn) =>
