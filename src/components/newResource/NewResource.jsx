@@ -16,7 +16,8 @@ const customStyles = {
   },
 };
 
-// Modal.setAppElement("#yourAppElement");
+Modal.setAppElement(document.getElementById('root'));
+
 
 export function NewResource({ isLoggedIn }) {
   //! REACT MODAL :
