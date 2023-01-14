@@ -4,7 +4,7 @@ import { Navbar } from "../components/navbar/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { getOrCreateUser } from "../redux/features/user/userThunk";
+import { fetchUserInfo } from "../redux/features/user/userThunk";
 
 export function Home() {
   const { user, isLoading, isAuthenticated, getAccessTokenSilently } =
@@ -16,12 +16,12 @@ export function Home() {
     async function handleGetOrCreateUser() {
       if (!isLoading && isAuthenticated) {
         const accessToken = await getAccessTokenSilently();
-        dispatch(getOrCreateUser(accessToken));
-        console.log("DESPACHADO GET OR CREATE USER");
+        dispatch(fetchUserInfo(accessToken));
+        console.log("DESPACHADO FETCH USER INFO.");
       }
     }
     if (!userProfile) {
-      console.log("!USER PROFILE. getOrCreateUser() en Home ");
+      console.log("!USER PROFILE. handleGetOrCreateUser() en Home ");
       handleGetOrCreateUser();
     }
   }, [isLoading]);
