@@ -1,10 +1,9 @@
-import { setAllResources } from "./resourceSlice";
 import Swal from "sweetalert2";
 import axios from "axios";
 import { NAME_ACCESS_TOKEN, header } from "../../../helpers/constants";
 
-import { getOrCreateUser } from "../user/userThunk";
 import { URL_CREATE_NEW_RESOURCE } from "../../../helpers/URLs";
+import { setUserProfile } from "../user/userSlice";
 
 // export function fetchAllResources() {
 //   return async function (dispatch) {
@@ -56,9 +55,8 @@ export function createResource(form, setForm, token) {
           keywords: "",
         });
       }
-      // Si se crea un recurso nuevo, fetcheo los datos del usuario actualizados para que se re-renderice el componente de suscripciones automáticamente.
-      // return dispatch(fetchAllResources(accessToken));
-      return dispatch(getOrCreateUser(accessToken));
+      // La request me responde con el usuario actualizado:
+      return dispatch(setUserProfile(response.data));
     } catch (error) {
       console.log(error);
       return Swal.fire({
