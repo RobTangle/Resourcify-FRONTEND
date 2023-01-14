@@ -3,7 +3,6 @@ import { useState } from "react";
 import { NAME_ACCESS_TOKEN } from "../../helpers/constants";
 import LoginButton from "../login-button/LoginButton";
 import LogoutButton from "../logout-button/LogoutButton";
-import { SigninModal } from "../signinModal/SigninModal";
 
 export function Navbar({ isLoggedIn }) {
   const [token, setToken] = useState(false);
@@ -28,7 +27,6 @@ export function Navbar({ isLoggedIn }) {
         </>
       ) : (
         <>
-          <SigninModal />
           <LoginButton />
         </>
       )}
