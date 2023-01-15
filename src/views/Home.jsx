@@ -1,18 +1,26 @@
 import { MyResources } from "../components/myResources/MyResources";
-import { NewResource } from "../components/newResource/NewResource";
 import { Navbar } from "../components/navbar/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserInfo } from "../redux/features/user/userThunk";
+import { ReactjsPopup } from "../components/ModalsNewResource/ReactjsPopup";
+import { useNavigate } from "react-router-dom";
 
 export function Home() {
   const { user, isLoading, isAuthenticated, getAccessTokenSilently } =
     useAuth0();
   const dispatch = useDispatch();
   const userProfile = useSelector((state) => state.user?.userProfile?.user);
+  const navigate = useNavigate();
 
   React.useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      console.log(
+        "Usuario no autenticado. Redirigiendo al landing para que se loguee"
+      );
+      navigate("/");
+    }
     async function handleGetOrCreateUser() {
       if (!isLoading && isAuthenticated) {
         const accessToken = await getAccessTokenSilently();
@@ -29,10 +37,14 @@ export function Home() {
   return (
     <div>
       <h1>Home</h1>
+      <Navbar isLoggedIn={isAuthenticated} />
       {isAuthenticated ? <h2>Welcome, {user?.name}!</h2> : null}
       <h3>Is Authenticated: {isAuthenticated ? "true" : "false"}</h3>
-      <Navbar isLoggedIn={isAuthenticated} />
-      <NewResource isLoggedIn={isAuthenticated} />
+      <div>
+        <div className="mt-3">
+          <ReactjsPopup />
+        </div>
+      </div>
       <MyResources isLoggedIn={isAuthenticated} />
     </div>
   );
