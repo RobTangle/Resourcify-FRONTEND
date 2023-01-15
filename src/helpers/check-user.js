@@ -2,6 +2,7 @@
 import { URL_EXISTS_IN_DB } from "./URLs";
 import { NAME_ACCESS_TOKEN } from "./constants";
 
+//! Esta función está deprecada ya que el flow de signup cambió y esta función ya quedó en desuso.
 export async function userExist(
   user,
   isAuthenticated,
