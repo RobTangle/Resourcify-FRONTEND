@@ -13,7 +13,7 @@ export function ReactjsPopup() {
           type="button"
         >
           {" "}
-          ReactjsPopup
+          Save resource
         </button>
       }
       modal
