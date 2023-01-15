@@ -1,6 +1,9 @@
 export function Card({ resource }) {
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 m-1 ">
+      <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
+        {resource.category}
+      </span>
       <div className="flex justify-end px-4 pt-4">
         <span className="inline-flex divide-x overflow-hidden rounded-md border bg-white shadow-sm dark:divide-grey-900 dark:border-gray-800 dark:bg-gray-800">
           <button
@@ -94,7 +97,7 @@ export function Card({ resource }) {
           </ul>
         </div>
       </div>
-      <svg
+      {/* <svg
         className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
         aria-hidden="true"
         fill="currentColor"
@@ -107,12 +110,12 @@ export function Card({ resource }) {
           clipRule="evenodd"
         ></path>
         <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
-      </svg>
-      <a href="#">
-        <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
-          {resource.title}
-        </h5>
-      </a>
+      </svg> */}
+
+      <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+        {resource.title}
+      </h5>
+
       <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
         {resource?.description}
       </p>
@@ -132,6 +135,22 @@ export function Card({ resource }) {
           <path d="M5 5a2 2 0 00-2 2v8a2 2 0 002 2h8a2 2 0 002-2v-3a1 1 0 10-2 0v3H5V7h3a1 1 0 000-2H5z"></path>
         </svg>
       </a>
+      <div>
+        {Array.isArray(resource.keywords) && resource.keywords?.length
+          ? resource.keywords.map((keyword) => {
+              if (keyword) {
+                return (
+                  <span
+                    className="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
+                    key={Math.random()}
+                  >
+                    {keyword}
+                  </span>
+                );
+              }
+            })
+          : null}
+      </div>
     </div>
   );
 }
