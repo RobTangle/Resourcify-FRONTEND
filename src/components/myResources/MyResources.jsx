@@ -28,7 +28,7 @@ export function MyResources({ isLoggedIn }) {
           <hr />
           {userResourcesState?.length === 0 && (
             <>
-              <button onClick={handleRefresh}>Refresh</button>
+              {/* <button onClick={handleRefresh}>Refresh</button> */}
               <h3>
                 You don't have any resource saved in the data base. What are you
                 waiting for?!
@@ -38,7 +38,7 @@ export function MyResources({ isLoggedIn }) {
           {userResourcesState?.length > 0 && (
             <>
               <h2>My resources </h2>
-              <button onClick={handleRefresh}>Refresh</button>
+              {/* <button onClick={handleRefresh}>Refresh</button> */}
               <div className="flex flex-row flex-wrap">
                 {userResourcesState.map((resource) => {
                   return <Card resource={resource} key={Math.random()} />;

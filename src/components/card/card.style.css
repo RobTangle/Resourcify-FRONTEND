@@ -4,3 +4,9 @@
   padding: 1em;
   margin-bottom: 1em;
 }
+
+.custom-class {
+  overflow-wrap: anywhere;
+  text-overflow: ellipsis;
+  overflow: hidden;
+}
