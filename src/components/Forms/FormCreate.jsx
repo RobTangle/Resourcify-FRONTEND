@@ -3,7 +3,7 @@ import { useDispatch } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { createResource } from "../../redux/features/resource";
 
-export function FormFlowBite() {
+export function FormCreate() {
   const [form, setForm] = useState({
     title: "",
     link: "",
@@ -52,8 +52,8 @@ export function FormFlowBite() {
           type="title"
           id="title"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          // placeholder="name@flowbite.com"
           onChange={handleOnChange}
+          value={form.title}
           required
         />
       </div>
@@ -67,8 +67,10 @@ export function FormFlowBite() {
         <input
           type="text"
           id="link"
+          placeholder="https://somewebpage.com/info"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
+          value={form.link}
           required
         />
       </div>
@@ -84,6 +86,7 @@ export function FormFlowBite() {
           id="category"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
+          value={form.category}
           required
         />
       </div>
@@ -99,6 +102,7 @@ export function FormFlowBite() {
           id="description"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
+          value={form.description}
         ></textarea>
       </div>
       <div className="mb-6">
@@ -114,6 +118,7 @@ export function FormFlowBite() {
           id="order"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
+          value={form.order}
         />
       </div>
       <div className="mb-4">
@@ -128,6 +133,7 @@ export function FormFlowBite() {
           id="keywords"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
+          value={form.keywords}
         />
       </div>
       <div className="flex items-start mb-6">
@@ -135,6 +141,7 @@ export function FormFlowBite() {
           <input
             id="terms"
             type="checkbox"
+            checked={form.is_favourite}
             value=""
             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
             onClick={handleIsFavourite}

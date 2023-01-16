@@ -2,9 +2,9 @@ import React from "react";
 import Popup from "reactjs-popup";
 // import "reactjs-popup/dist/index.css";
 import "./reactjsPopup.style.css";
-import { FormFlowBite } from "../Forms/FormFlowBite";
+import { FormCreate } from "../Forms/FormCreate";
 
-export function ReactjsPopup() {
+export function ModalCreateResource() {
   return (
     <Popup
       trigger={
@@ -18,7 +18,7 @@ export function ReactjsPopup() {
       }
       modal
     >
-      <FormFlowBite />
+      <FormCreate />
     </Popup>
   );
 }
