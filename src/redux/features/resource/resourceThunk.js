@@ -4,6 +4,8 @@ import { header } from "../../../helpers/constants";
 
 import { URL_CREATE_NEW_RESOURCE } from "../../../helpers/URLs";
 import { setUserProfile } from "../user/userSlice";
+import { filterResources } from "../../../helpers/filterResources";
+import { setRenderized } from "./resourceSlice";
 
 export function createResource(form, setForm, accessToken) {
   console.log("createResource 1");
@@ -47,6 +49,43 @@ export function createResource(form, setForm, accessToken) {
         title: "Oops! Something went wrong!",
         text: error?.response?.data?.message?.[0] || error.message,
         showConfirmButton: true,
+      });
+    }
+  };
+}
+
+export function filterElements(filterObj, userAllResources) {
+  return async function (dispatch) {
+    try {
+      const filteredElements = filterResources(userAllResources, filterObj);
+      console.log(
+        "Despachando setRenderized con un arreglo de length = ",
+        filteredElements.length
+      );
+      dispatch(setRenderized(filteredElements));
+    } catch (error) {
+      Swal.error({
+        title: "Oop! Something went wrong! 😬",
+        text: error.message,
+        icon: "error",
+      });
+    }
+  };
+}
+
+export function resetRenderized(userAllResources) {
+  return async function (dispatch) {
+    try {
+      console.log(
+        "Despachando resetRenderized con un arreglo de length = ",
+        userAllResources.length
+      );
+      dispatch(setRenderized(userAllResources));
+    } catch (error) {
+      Swal.fire({
+        title: "Oop! Something went wrong! 😬",
+        text: error.message,
+        icon: "error",
       });
     }
   };
