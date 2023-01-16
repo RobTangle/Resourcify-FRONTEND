@@ -2,11 +2,21 @@ import { useDispatch, useSelector } from "react-redux";
 import { ModalEditResource } from "../ModalEditResource/ModalEditResource";
 import { deleteResource } from "../../redux/features/resource";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useState } from "react";
 
 export function Card({ resource }) {
   const dispatch = useDispatch();
   const { getAccessTokenSilently } = useAuth0();
   const renderizedArray = useSelector((state) => state?.resource?.renderized);
+
+  const [showFullDescription, setShowFullDescription] = useState(false);
+  const description = resource?.description;
+  let shortDescription = "";
+  if (description.length <= 150) {
+    shortDescription = description;
+  } else {
+    shortDescription = description?.slice(0, 150) + "...";
+  }
 
   async function handleOnClickDelete() {
     const accessToken = await getAccessTokenSilently();
@@ -41,9 +51,31 @@ export function Card({ resource }) {
         {resource.title}
       </h5>
 
-      <p className="mb-3 font-normal text-gray-500 dark:text-gray-400">
-        {resource?.description}
-      </p>
+      <div>
+        <p
+          id="description-p"
+          className="mb-1 font-normal text-gray-500 dark:text-gray-400"
+          style={{
+            overflow: showFullDescription ? "visible" : "hidden",
+            textOverflow: showFullDescription ? "clip" : "ellipsis",
+            display: showFullDescription ? "block" : "-webkit-box",
+            WebkitLineClamp: showFullDescription ? "none" : "3",
+            WebkitBoxOrient: showFullDescription ? "none" : "vertical",
+          }}
+        >
+          {showFullDescription === true
+            ? resource?.description
+            : shortDescription}
+        </p>
+        {description.length > 150 ? (
+          <span
+            className="text-gray-600 cursor-pointer"
+            onClick={() => setShowFullDescription(!showFullDescription)}
+          >
+            {showFullDescription ? "Less" : "More"}
+          </span>
+        ) : null}
+      </div>
       <a
         href={resource?.link}
         target="_blank"
@@ -51,7 +83,7 @@ export function Card({ resource }) {
       >
         {resource?.link}
         <svg
-          className="w-5 h-5 ml-2"
+          className="mt-3 mb-3 w-5 h-5 ml-2"
           fill="currentColor"
           viewBox="0 0 20 20"
           xmlns="http://www.w3.org/2000/svg"
