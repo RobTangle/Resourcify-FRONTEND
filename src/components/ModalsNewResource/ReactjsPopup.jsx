@@ -2,7 +2,7 @@ import React from "react";
 import Popup from "reactjs-popup";
 // import "reactjs-popup/dist/index.css";
 import "./reactjsPopup.style.css";
-import { FormFlowBite } from "../FormsNewResource/FormFlowBite";
+import { FormFlowBite } from "../Forms/FormFlowBite";
 
 export function ReactjsPopup() {
   return (
