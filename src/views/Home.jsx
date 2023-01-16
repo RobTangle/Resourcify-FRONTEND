@@ -6,6 +6,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUserInfo } from "../redux/features/user/userThunk";
 import { ModalCreateResource } from "../components/ModalsCreateResource/ModalCreateResource";
 import { useNavigate } from "react-router-dom";
+import logo from "../assets/logo.png";
 
 export function Home() {
   const { user, isLoading, isAuthenticated, getAccessTokenSilently } =
@@ -36,10 +37,15 @@ export function Home() {
 
   return (
     <div>
-      <h1>Home</h1>
-      <Navbar isLoggedIn={isAuthenticated} />
+      <div className="flex justify-end">
+        <Navbar isLoggedIn={isAuthenticated} />
+      </div>
+      <div className="w-80 ml-auto mr-auto mb-3">
+        <img src={logo} alt="resourcify logo" />
+      </div>
+      {/* <h1>Home</h1> */}
       {isAuthenticated ? <h2>Welcome, {user?.name}!</h2> : null}
-      <h3>Is Authenticated: {isAuthenticated ? "true" : "false"}</h3>
+      {/* <h3>Is Authenticated: {isAuthenticated ? "true" : "false"}</h3> */}
       <div>
         <div className="mt-3">
           <ModalCreateResource />
