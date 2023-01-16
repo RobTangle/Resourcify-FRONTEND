@@ -22,7 +22,6 @@ export function Navbar({ isLoggedIn }) {
     <div className="navbar">
       {isLoggedIn ? (
         <>
-          <h3>Welcome! </h3>
           <LogoutButton />
         </>
       ) : (
