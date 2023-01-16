@@ -5,6 +5,7 @@ import { header } from "../../../helpers/constants";
 import {
   URL_CREATE_NEW_RESOURCE,
   URL_S_PA_UPDATE_RESOURCE,
+  URL_S_DE_DELETE_RESOURCE,
 } from "../../../helpers/URLs";
 import { setUserProfile } from "../user/userSlice";
 import { filterResources } from "../../../helpers/filterResources";
@@ -91,6 +92,48 @@ export function editResource(id, form, setForm, accessToken) {
       }
       // La request me responde con el usuario actualizado:
       return dispatch(setUserProfile(response.data));
+    } catch (error) {
+      console.log("error en createNewResource! ", error);
+      return Swal.fire({
+        position: "center",
+        icon: "error",
+        title: "Oops! Something went wrong!",
+        text: error?.response?.data?.message?.[0] || error.message,
+        showConfirmButton: true,
+      });
+    }
+  };
+}
+
+export function deleteResource(id, accessToken, renderizedArray) {
+  console.log("DELETE RESOURCE");
+  console.log("ACCESS TOKEN EN DELETE RESOURCE = ", accessToken);
+  return async function (dispatch) {
+    try {
+      console.log("DELETE RESOURCE adentro de try catch");
+      // const accessToken = localStorage.getItem(NAME_ACCESS_TOKEN) || token;
+      const response = await axios.delete(
+        URL_S_DE_DELETE_RESOURCE + `/${id}`,
+        header(accessToken)
+      );
+      console.log("reponse = ", response);
+      if (response.status === 204) {
+        console.log("Response status === 204");
+        Swal.fire({
+          position: "center",
+          icon: "success",
+          title: "Resource deleted!",
+          showConfirmButton: true,
+          timer: 5000,
+          timerProgressBar: true,
+        });
+      }
+      // La request me responde con el usuario actualizado:
+      dispatch(setUserProfile(response.data));
+      const renderizedArrayUpdated = renderizedArray.filter(
+        (doc) => doc._id !== id
+      );
+      return dispatch(setRenderized(renderizedArrayUpdated));
     } catch (error) {
       console.log("error en createNewResource! ", error);
       return Swal.fire({

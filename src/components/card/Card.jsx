@@ -1,6 +1,18 @@
+import { useDispatch, useSelector } from "react-redux";
 import { ModalEditResource } from "../ModalEditResource/ModalEditResource";
+import { deleteResource } from "../../redux/features/resource";
+import { useAuth0 } from "@auth0/auth0-react";
 
 export function Card({ resource }) {
+  const dispatch = useDispatch();
+  const { getAccessTokenSilently } = useAuth0();
+  const renderizedArray = useSelector((state) => state?.resource?.renderized);
+
+  async function handleOnClickDelete() {
+    const accessToken = await getAccessTokenSilently();
+    dispatch(deleteResource(resource?._id, accessToken, renderizedArray));
+  }
+
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 m-1 ">
       <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-0 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
@@ -71,6 +83,7 @@ export function Card({ resource }) {
           <button
             className="inline-block p-1 h-6 w-6 text-gray-700 hover:bg-gray-50 focus:relative dark:text-gray-200 dark:hover:bg-gray-800 ml-0.5"
             title="Delete Product"
+            onClick={handleOnClickDelete}
           >
             <svg
               xmlns="http://www.w3.org/2000/svg"
