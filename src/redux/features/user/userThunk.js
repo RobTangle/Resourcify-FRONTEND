@@ -3,6 +3,7 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { header } from "../../../helpers/constants";
 import { URL_U_G_GET_USER, URL_U_PO_CREATE_USER } from "../../../helpers/URLs";
+import { setRenderized } from "../resource";
 
 export function fetchUserInfo(accessToken) {
   return async function (dispatch) {
@@ -13,7 +14,8 @@ export function fetchUserInfo(accessToken) {
         },
       });
       console.log(response);
-      return dispatch(setUserProfile(response.data));
+      dispatch(setUserProfile(response.data));
+      return dispatch(setRenderized(response.data?.resources));
     } catch (error) {
       console.log(error);
       if (error?.response?.status === 404) {
