@@ -13,13 +13,11 @@ export function ReactjsPopup() {
           type="button"
         >
           {" "}
-          Save resource
+          Create Resource
         </button>
       }
       modal
     >
-      {/* <div>Save a new resource</div> */}
-      {/* <NewResourceForm /> */}
       <FormFlowBite />
     </Popup>
   );
