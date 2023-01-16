@@ -18,8 +18,6 @@ export function ReactjsPopup() {
       }
       modal
     >
-      {/* <div>Save a new resource</div> */}
-      {/* <NewResourceForm /> */}
       <FormFlowBite />
     </Popup>
   );
