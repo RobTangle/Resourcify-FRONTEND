@@ -4,7 +4,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserInfo } from "../redux/features/user/userThunk";
-import { ReactjsPopup } from "../components/ModalsNewResource/ReactjsPopup";
+import { ModalCreateResource } from "../components/ModalsCreateResource/ModalCreateResource";
 import { useNavigate } from "react-router-dom";
 
 export function Home() {
@@ -42,7 +42,7 @@ export function Home() {
       <h3>Is Authenticated: {isAuthenticated ? "true" : "false"}</h3>
       <div>
         <div className="mt-3">
-          <ReactjsPopup />
+          <ModalCreateResource />
         </div>
       </div>
       <MyResources isLoggedIn={isAuthenticated} />
