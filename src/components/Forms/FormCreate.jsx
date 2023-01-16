@@ -43,7 +43,7 @@ export function FormCreate() {
     <form onSubmit={handleOnSubmit}>
       <div className="mb-4">
         <label
-          for="title"
+          htmlFor="title"
           className="block mb-0 text-sm font-medium text-gray-900 dark:text-black"
         >
           Title
@@ -59,7 +59,7 @@ export function FormCreate() {
       </div>
       <div className="mb-4">
         <label
-          for="link"
+          htmlFor="link"
           className="block mb-0 text-sm font-medium text-gray-900 dark:text-black"
         >
           Link
@@ -76,7 +76,7 @@ export function FormCreate() {
       </div>
       <div className="mb-4">
         <label
-          for="category"
+          htmlFor="category"
           className="block mb-0 text-sm font-medium text-gray-900 dark:text-black"
         >
           Category
@@ -92,7 +92,7 @@ export function FormCreate() {
       </div>
       <div className="mb-4">
         <label
-          for="description"
+          htmlFor="description"
           className="block mb-0 text-sm font-medium text-gray-900 dark:text-black"
         >
           Description
@@ -107,7 +107,7 @@ export function FormCreate() {
       </div>
       <div className="mb-6">
         <label
-          for="order"
+          htmlFor="order"
           className="block mb-0 text-sm font-medium text-gray-900 dark:text-black"
         >
           Relevance
@@ -123,7 +123,7 @@ export function FormCreate() {
       </div>
       <div className="mb-4">
         <label
-          for="keywords"
+          htmlFor="keywords"
           className="block mb-0 text-sm font-medium text-gray-900 dark:text-black"
         >
           Keywords
@@ -148,7 +148,7 @@ export function FormCreate() {
           />
         </div>
         <label
-          for="terms"
+          htmlFor="terms"
           className="ml-2 text-sm font-medium text-gray-900 dark:text-black"
         >
           Is Favourite
