@@ -51,7 +51,7 @@ export function FormEdit({ resource }) {
         <input
           type="title"
           id="title"
-          value={form?.title}
+          value={form.title}
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
           required
@@ -67,7 +67,7 @@ export function FormEdit({ resource }) {
         <input
           type="text"
           id="link"
-          value={form?.link}
+          value={form.link}
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
           required
@@ -83,7 +83,7 @@ export function FormEdit({ resource }) {
         <input
           type="text"
           id="category"
-          value={form?.category}
+          value={form.category}
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
           required
@@ -99,7 +99,7 @@ export function FormEdit({ resource }) {
         <textarea
           type="text"
           id="description"
-          value={form?.description}
+          value={form.description}
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
         >
@@ -116,7 +116,7 @@ export function FormEdit({ resource }) {
         <input
           type="number"
           min={0}
-          value={form?.order}
+          value={form.order}
           id="order"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
@@ -132,7 +132,7 @@ export function FormEdit({ resource }) {
         <input
           type="text"
           id="keywords"
-          value={form?.keywords}
+          value={form.keywords}
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
         />
@@ -143,7 +143,7 @@ export function FormEdit({ resource }) {
             id="terms"
             type="checkbox"
             value=""
-            checked={form?.is_favourite}
+            checked={form.is_favourite}
             className="w-4 h-4 border border-gray-300 rounded bg-gray-50 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800 dark:focus:ring-offset-gray-800"
             onChange={handleIsFavourite}
           />
