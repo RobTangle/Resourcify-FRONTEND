@@ -26,29 +26,23 @@ export function Card({ resource }) {
 
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 m-1 ">
-      <span className="bg-blue-100 text-blue-800 text-xs font-medium mr-0 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400">
-        {resource.category}
-      </span>
-      <span className="block mr-0">
-        {resource.is_favourite ? <span>💗</span> : null}
-      </span>
+      <div id="card-header" className="flex">
+        <span
+          id="cat"
+          className="bg-blue-100 text-blue-800 text-s font-medium mr-0 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 mx-auto"
+        >
+          {resource.category}
+        </span>
+        {resource.is_favourite ? (
+          <span id="fav" className="mr-auto w-0">
+            💗
+          </span>
+        ) : (
+          <span className="ml-auto"></span>
+        )}
+      </div>
 
-      {/* <svg
-        className="w-10 h-10 mb-2 text-gray-500 dark:text-gray-400"
-        aria-hidden="true"
-        fill="currentColor"
-        viewBox="0 0 20 20"
-        xmlns="http://www.w3.org/2000/svg"
-      >
-        <path
-          fillRule="evenodd"
-          d="M5 5a3 3 0 015-2.236A3 3 0 0114.83 6H16a2 2 0 110 4h-5V9a1 1 0 10-2 0v1H4a2 2 0 110-4h1.17C5.06 5.687 5 5.35 5 5zm4 1V5a1 1 0 10-1 1h1zm3 0a1 1 0 10-1-1v1h1z"
-          clipRule="evenodd"
-        ></path>
-        <path d="M9 11H3v5a2 2 0 002 2h4v-7zM11 18h4a2 2 0 002-2v-5h-6v7z"></path>
-      </svg> */}
-
-      <h5 className="mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+      <h5 className="break-words mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
         {resource.title}
       </h5>
 
@@ -101,7 +95,7 @@ export function Card({ resource }) {
               if (keyword) {
                 return (
                   <span
-                    className="bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
+                    className="break-words bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
                     key={Math.random()}
                   >
                     {keyword}
