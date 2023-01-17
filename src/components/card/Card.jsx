@@ -1,6 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { ModalEditResource } from "../ModalEditResource/ModalEditResource";
-import { deleteResource } from "../../redux/features/resource";
+import {
+  deleteResource,
+  renderElemsByKeyword,
+} from "../../redux/features/resource";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useState } from "react";
 import "./card.style.css";
@@ -8,7 +11,12 @@ import "./card.style.css";
 export function Card({ resource }) {
   const dispatch = useDispatch();
   const { getAccessTokenSilently } = useAuth0();
+
   const renderizedArray = useSelector((state) => state?.resource?.renderized);
+
+  const allUserResources = useSelector(
+    (state) => state?.user?.userProfile?.resources
+  );
 
   const [showFullDescription, setShowFullDescription] = useState(false);
   const description = resource?.description;
@@ -22,6 +30,11 @@ export function Card({ resource }) {
   async function handleOnClickDelete() {
     const accessToken = await getAccessTokenSilently();
     dispatch(deleteResource(resource?._id, accessToken, renderizedArray));
+  }
+
+  function handleOnClickKeyword(e) {
+    let keyword = e.target.id;
+    dispatch(renderElemsByKeyword(keyword, allUserResources));
   }
 
   return (
@@ -101,8 +114,10 @@ export function Card({ resource }) {
               if (keyword) {
                 return (
                   <span
-                    className="break-words bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
+                    className="cursor-pointer break-words bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
                     key={Math.random()}
+                    id={keyword}
+                    onClick={handleOnClickKeyword}
                   >
                     {keyword}
                   </span>
