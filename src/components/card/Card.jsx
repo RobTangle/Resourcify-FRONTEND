@@ -27,6 +27,12 @@ export function Card({ resource }) {
   return (
     <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 m-1 ">
       <div id="card-header" className="flex">
+        {/* <span
+          id="rel"
+          className=" border-dotted rounded-full px-2 pt-1 border-gray-500 bg-sky-900"
+        >
+          {resource.order}
+        </span> */}
         <span
           id="cat"
           className="bg-blue-100 text-blue-800 text-s font-medium mr-0 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 mx-auto"
