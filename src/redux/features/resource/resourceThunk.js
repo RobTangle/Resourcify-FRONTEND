@@ -118,3 +118,22 @@ export function resetRenderized(userAllResources) {
     }
   };
 }
+
+export function renderElemsByKeyword(keyword, userAllResources) {
+  console.log("userAllResources = ", userAllResources);
+  console.log("ejecutando renderElemesByKeyword con keyword = ", keyword);
+  return async function (dispatch) {
+    try {
+      const arrayFilteredByKeyword = userAllResources.filter((elem) =>
+        elem.keywords.some((string) => string == keyword)
+      );
+      console.log(
+        "arrayFilteredByKeyword.length = ",
+        arrayFilteredByKeyword.length
+      );
+      return dispatch(setRenderized(arrayFilteredByKeyword));
+    } catch (error) {
+      SwalErrorMX(error).fire();
+    }
+  };
+}
