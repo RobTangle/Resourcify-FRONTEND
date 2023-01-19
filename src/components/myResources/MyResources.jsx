@@ -1,25 +1,11 @@
 import React from "react";
 import { Card } from "../card/Card";
-import { useDispatch, useSelector } from "react-redux";
-import { getOrCreateUser } from "../../redux/features/user/userThunk";
-import { useAuth0 } from "@auth0/auth0-react";
+import { useSelector } from "react-redux";
 
 export function MyResources({ isLoggedIn }) {
-  const dispatch = useDispatch();
   const userResourcesState = useSelector(
     (state) => state.user?.userProfile?.resources
   );
-
-  const { getAccessTokenSilently } = useAuth0();
-
-  function handleRefresh() {
-    async function getUserProfileAgain() {
-      const accessToken = await getAccessTokenSilently();
-      dispatch(getOrCreateUser(accessToken));
-      console.log("all resources fetched!");
-    }
-    getUserProfileAgain();
-  }
 
   return (
     <>
