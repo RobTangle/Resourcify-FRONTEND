@@ -1,32 +1,73 @@
 import React from 'react';
-import {useDispatch, useSelector} from 'react-redux';
-import { filterResources } from '../../helpers/filterResources';
+import { useState } from 'react';
+import { useDispatch, useSelector} from 'react-redux';
+import { resetRenderized } from '../../redux/features/resource';
+import { CategoryCheckbox } from '../filters/CategoryCheckbox';
+// import { getOrCreateUser } from "../../redux/features/user/userThunk";
+// import { useAuth0 } from "@auth0/auth0-react";
 
 
-export function FilterOptions(){
+export function FilterOptions({ isLoggedIn }) {
+
   const dispatch = useDispatch();
-  const userResourcesState = useSelector(
-    (state) => state.user?.userProfile.resources
+  const userProfileState = useSelector(
+    (state) => state.user?.userProfile
   )
+  // console.log("userProfileState",userProfileState)
+  const categoriesArray = userProfileState?.groupedDocs && Object.keys(userProfileState.groupedDocs)
+  console.log('categoriesArray', categoriesArray);
 
-  const getFiltersFromUserResources = filterResources()
+
+  const [filterObject, setFilterObject] = useState({
+    categories: [],
+    keywords: []
+  })
+  console.log('filterObject', filterObject)
+
+
+
+  // const { getAccessTokenSilently } = useAuth0();
+
+  // function handleRefresh() {
+  //   async function getUserProfileAgain() {
+  //     const accessToken = await getAccessTokenSilently();
+  //     dispatch(getOrCreateUser(accessToken));
+  //     console.log("all resources fetched!");
+  //   }
+  //   getUserProfileAgain();
+  // }
+
+  function handleCleanFilters(){
+    dispatch(resetRenderized(userProfileState.resources))
+  }
 
 
 
   return (
     <>
-    <h2 className="mb-5 text-lg font-medium text-gray-900 dark:text-white">Choose Category:</h2>
-    <ul className="grid w-full gap-6 md:grid-cols-3">
-        <li>
-            <input type="checkbox" id="react-option" value="" className="hidden peer" required=""/>
-            <label htmlFor="react-option" className="inline-flex items-center justify-between w-full p-5 text-gray-500 bg-white border-2 border-gray-200 rounded-lg cursor-pointer dark:hover:text-gray-300 dark:border-gray-700 peer-checked:border-blue-600 hover:text-gray-600 dark:peer-checked:text-gray-300 peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700">                           
-                <div className="block">
-                    <div className="w-full text-lg font-semibold">React Js</div>
-                </div>
-            </label>
-        </li>
-    </ul>
-
-  </>
-  )
+      {/* {isLoggedIn === true && ( */}
+        <div className="mt-5">
+          <hr />       
+          {categoriesArray?.length === 0 && (
+            <>
+              {/* <button onClick={handleRefresh}>Refresh</button> */}
+              <h3>It's Empty</h3>
+            </>
+          )}
+          {categoriesArray?.length > 0 && (
+            <>
+              <h2 className="p-2">Choose Categories </h2>
+              <br/>
+              <button onClick={handleCleanFilters}>Clean Filters</button>
+              <ul className="grid w-full gap-6 md:grid-cols-3">
+              {categoriesArray?.map((category) => {
+                  return <CategoryCheckbox category={category} filterObject={filterObject} setFilterObject={setFilterObject} key={Math.random()} />;
+                })}
+              </ul>
+            </>
+          )}
+        </div>
+      {/* )} */}
+    </>
+  );
 }
