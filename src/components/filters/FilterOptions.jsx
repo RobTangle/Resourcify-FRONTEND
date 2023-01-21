@@ -3,6 +3,7 @@ import { useState } from 'react';
 import { useDispatch, useSelector} from 'react-redux';
 import { filterElements, resetRenderized } from '../../redux/features/resource';
 import { CategoryCheckbox } from '../filters/CategoryCheckbox';
+import { KeywordsCheckbox } from './KeywordsCheckbox';
 // import { getOrCreateUser } from "../../redux/features/user/userThunk";
 // import { useAuth0 } from "@auth0/auth0-react";
 
@@ -13,9 +14,12 @@ export function FilterOptions({ isLoggedIn }) {
   const userProfileState = useSelector(
     (state) => state.user?.userProfile
   )
-  // console.log("userProfileState",userProfileState)
+  console.log("userProfileState",userProfileState)
   const categoriesArray = userProfileState?.groupedDocs && Object.keys(userProfileState.groupedDocs)
-  console.log('categoriesArray', categoriesArray);
+  // console.log('categoriesArray', categoriesArray);
+
+  // const allUserKeywords = for (let i=0; i<)
+  // Object.values(userProfileState.resources.keywords)
 
 
   const [filterObject, setFilterObject] = useState({
@@ -44,6 +48,10 @@ export function FilterOptions({ isLoggedIn }) {
 
   function handleCleanFilters(){
     dispatch(resetRenderized(userProfileState.resources))
+    setFilterObject({
+      categories: [],
+      keywords: []
+    })
   }
 
 
@@ -65,6 +73,12 @@ export function FilterOptions({ isLoggedIn }) {
               <ul className="grid w-full gap-5 md:grid-cols-9 mx-3" >
               {categoriesArray?.map((category) => {
                   return <CategoryCheckbox category={category} filterObject={filterObject} setFilterObject={setFilterObject} key={Math.random()} />;
+                })}
+              </ul>
+              <h2 className="p-2 text-left mx-2">Choose Keywords </h2>
+              <ul className="grid w-full gap-5 md:grid-cols-9 mx-3" >
+              {categoriesArray?.map((category) => {
+                  return <KeywordsCheckbox category={category} filterObject={filterObject} setFilterObject={setFilterObject} key={Math.random()} />;
                 })}
               </ul>
               <div  className="grid w-full gap-5 md:grid-cols-8 mx-3 my-5">
