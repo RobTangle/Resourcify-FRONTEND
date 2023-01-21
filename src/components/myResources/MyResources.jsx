@@ -6,9 +6,10 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export function MyResources({ isLoggedIn }) {
   const dispatch = useDispatch();
-  const userResourcesState = useSelector(
-    (state) => state.user?.userProfile?.resources
+  const renderizedState = useSelector(
+    (state) => state.resource?.renderized
   );
+  
 
   const { getAccessTokenSilently } = useAuth0();
 
@@ -26,7 +27,7 @@ export function MyResources({ isLoggedIn }) {
       {isLoggedIn === true && (
         <div className="mt-5">
           <hr />
-          {userResourcesState?.length === 0 && (
+          {renderizedState?.length === 0 && (
             <>
               {/* <button onClick={handleRefresh}>Refresh</button> */}
               <h3>
@@ -35,12 +36,12 @@ export function MyResources({ isLoggedIn }) {
               </h3>
             </>
           )}
-          {userResourcesState?.length > 0 && (
+          {renderizedState?.length > 0 && (
             <>
-              <h2>My resources </h2>
+              <h2 className="p-2">My resources </h2>
               {/* <button onClick={handleRefresh}>Refresh</button> */}
               <div className="flex flex-row flex-wrap">
-                {userResourcesState.map((resource) => {
+                {renderizedState.map((resource) => {
                   return <Card resource={resource} key={Math.random()} />;
                 })}
               </div>
