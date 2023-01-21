@@ -52,8 +52,6 @@ export function Home() {
           <ModalCreateResource />
         </div>
       </div>
-      <br/>
-      <hr/>
       <FilterOptions/>
       <MyResources isLoggedIn={isAuthenticated} />
     </div>
