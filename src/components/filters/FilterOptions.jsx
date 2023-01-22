@@ -4,8 +4,6 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterElements, resetRenderized } from "../../redux/features/resource";
 import { CategoryCheckbox } from "../filters/CategoryCheckbox";
 import { KeywordCheckbox } from "./KeywordCheckbox";
-// import { getOrCreateUser } from "../../redux/features/user/userThunk";
-// import { useAuth0 } from "@auth0/auth0-react";
 
 export function FilterOptions({ isLoggedIn }) {
   const userProfileState = useSelector((state) => state.user?.userProfile);
@@ -18,12 +16,9 @@ export function FilterOptions({ isLoggedIn }) {
   const [toggleAND, setToggleAND] = useState(false);
 
   const dispatch = useDispatch();
-  // console.log("userProfileState", userProfileState);
 
   const categoriesArray =
     userProfileState?.groupedDocs && Object.keys(userProfileState.groupedDocs);
-
-  // console.log("categoriesArray", categoriesArray);
 
   let getUserKeywords = userProfileState?.resources
     ?.map((r) => r.keywords)
@@ -49,12 +44,6 @@ export function FilterOptions({ isLoggedIn }) {
     });
   }
 
-  // function handleOnClicktoggleAND(e) {
-  //   console.log("e.target.checked = ", e.target.checked);
-  //   settoggleAND(e.target.checked);
-  //   console.log("toggleAND = ", toggleAND);
-  // }
-
   return (
     <>
       {/* {isLoggedIn === true && ( */}
@@ -62,7 +51,6 @@ export function FilterOptions({ isLoggedIn }) {
         <hr />
         {categoriesArray?.length === 0 && (
           <>
-            {/* <button onClick={handleRefresh}>Refresh</button> */}
             <h3>It's Empty</h3>
           </>
         )}
@@ -124,7 +112,6 @@ export function FilterOptions({ isLoggedIn }) {
           </>
         )}
       </div>
-      {/* )} */}
     </>
   );
 }
