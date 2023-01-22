@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { editResource } from "../../redux/features/resource";
 
@@ -13,6 +13,8 @@ export function FormEdit({ resource }) {
     is_favourite: resource?.is_favourite,
     keywords: resource?.keywords?.join(" ") || "",
   });
+
+  const filterState = useSelector((state) => state.resource?.filter);
 
   const dispatch = useDispatch();
   const { getAccessTokenSilently } = useAuth0();
@@ -36,7 +38,7 @@ export function FormEdit({ resource }) {
       ...form,
       keywords: form.keywords.toLowerCase().split(" "),
     };
-    dispatch(editResource(resource._id, formParsed, accessToken));
+    dispatch(editResource(resource._id, formParsed, accessToken, filterState));
   }
 
   return (
