@@ -22,7 +22,6 @@ export function createResource(form, setForm, accessToken, filterState) {
         form,
         header(accessToken)
       );
-      console.log("reponse = ", response);
       if (response.status === 201) {
         ToastSuccessMX("Resource created!").fire();
         setForm({
@@ -36,9 +35,7 @@ export function createResource(form, setForm, accessToken, filterState) {
         });
       }
       // La request me responde con el usuario actualizado:
-
       dispatch(setUserProfile(response.data));
-      // dispatch(setRenderized(response.data.resources));
       dispatch(
         filterElements(
           filterState,
@@ -46,8 +43,6 @@ export function createResource(form, setForm, accessToken, filterState) {
           filterState.toggleAND
         )
       );
-      console.log("filterState = ", filterState);
-      console.log("filterState.toggleAND = ", filterState.toggleAND);
     } catch (error) {
       console.log("error en createNewResource! ", error);
       ToastErrorMX(error).fire();
@@ -55,7 +50,7 @@ export function createResource(form, setForm, accessToken, filterState) {
   };
 }
 
-export function editResource(id, form, accessToken) {
+export function editResource(id, form, accessToken, filterState) {
   return async function (dispatch) {
     try {
       const response = await axios.patch(
@@ -67,7 +62,14 @@ export function editResource(id, form, accessToken) {
         ToastSuccessMX("Resource edited!").fire();
       }
       // La request me responde con el usuario actualizado:
-      return dispatch(setUserProfile(response.data));
+      dispatch(setUserProfile(response.data));
+      dispatch(
+        filterElements(
+          filterState,
+          response.data.resources,
+          filterState.toggleAND
+        )
+      );
     } catch (error) {
       console.log("error en createNewResource! ", error);
       ToastErrorMX(error).fire();
