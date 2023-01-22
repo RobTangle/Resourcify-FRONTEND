@@ -1,14 +1,10 @@
-import { useDispatch } from "react-redux";
-
 export function KeywordCheckbox({ keyword, filterObject, setFilterObject }) {
-  const dispatch = useDispatch();
   let updatedKeywords = [...filterObject.keywords];
 
   function handleChange(event) {
     const { value } = event.target;
 
     setFilterObject((filterObject) => {
-      console.log("set filter object en KEYWORD");
       updatedKeywords = [...filterObject.keywords];
       if (!updatedKeywords.includes(value)) {
         updatedKeywords.push(value);

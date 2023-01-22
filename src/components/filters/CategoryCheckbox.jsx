@@ -1,14 +1,10 @@
-import { useDispatch } from "react-redux";
-
 export function CategoryCheckbox({ category, filterObject, setFilterObject }) {
-  const dispatch = useDispatch();
   let updatedCategories = [...filterObject.categories];
 
   function handleChange(event) {
     const { value } = event.target;
 
     setFilterObject((filterObject) => {
-      console.log("set filter object en CATEGORY");
       updatedCategories = [...filterObject.categories];
       if (!updatedCategories.includes(value)) {
         updatedCategories.push(value);
