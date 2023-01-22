@@ -47,7 +47,7 @@ export function CategoryCheckbox({
           </div>
         </label>
         {/* <span className="absolute top-0 right-0"> {catLength}</span> */}
-        <div class="absolute inline-flex items-center justify-center w-6 h-6 text-sm font-bold text-white bg-blue-600 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
+        <div className="absolute inline-flex items-center justify-center w-6 h-6 text-sm font-bold text-white bg-yellow-600 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
           {catLength}
         </div>
       </li>
