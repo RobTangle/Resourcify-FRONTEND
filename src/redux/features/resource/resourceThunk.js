@@ -141,3 +141,25 @@ export function renderElemsByKeyword(keyword, userAllResources) {
     }
   };
 }
+
+export function loadingRenderized() {
+  return async function (dispatch) {
+    try {
+      console.log("Despachando loadingRenderized");
+      dispatch(setRenderized({ loading: true }));
+    } catch (error) {
+      SwalErrorMX(error).fire();
+    }
+  };
+}
+
+export function errorRenderized(errorMessage) {
+  return async function (dispatch) {
+    try {
+      console.log("Despachando loadingRenderized");
+      dispatch(setRenderized({ error: errorMessage }));
+    } catch (error) {
+      SwalErrorMX(error).fire();
+    }
+  };
+}
