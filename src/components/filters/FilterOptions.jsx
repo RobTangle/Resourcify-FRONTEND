@@ -26,7 +26,7 @@ export function FilterOptions({ isLoggedIn }) {
     ?.map((r) => r.keywords)
     ?.flat();
 
-  const objOfKeywords = getUserKeywords.reduce((acc, curr) => {
+  const objOfKeywords = getUserKeywords?.reduce((acc, curr) => {
     acc[curr] = (acc[curr] || 0) + 1;
     return acc;
   }, {});
