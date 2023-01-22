@@ -6,7 +6,7 @@ import { CategoryCheckbox } from "../filters/CategoryCheckbox";
 import { KeywordCheckbox } from "./KeywordCheckbox";
 import { setFilterState } from "../../redux/features/resource";
 
-export function FilterOptions({ isLoggedIn }) {
+export function FilterOptions() {
   const userProfileState = useSelector((state) => state.user?.userProfile);
 
   const [filterObject, setFilterObject] = useState({
@@ -56,7 +56,6 @@ export function FilterOptions({ isLoggedIn }) {
 
   return (
     <>
-      {/* {isLoggedIn === true && ( */}
       <div className="mt-5">
         <hr />
         {categoriesArray?.length === 0 && (

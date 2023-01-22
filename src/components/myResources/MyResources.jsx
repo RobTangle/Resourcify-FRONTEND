@@ -10,7 +10,6 @@ export function MyResources({ isLoggedIn }) {
       {isLoggedIn === true && (
         <div className="mt-5">
           <hr />
-          {/* <h2 className="p-2">My resources </h2> */}
           {renderizedState.loading && (
             <div className="h3">
               <h3>Loading...</h3>

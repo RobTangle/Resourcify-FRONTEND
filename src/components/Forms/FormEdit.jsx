@@ -20,8 +20,6 @@ export function FormEdit({ resource }) {
   const { getAccessTokenSilently } = useAuth0();
 
   function handleIsFavourite(e) {
-    console.log("handleIsFavourite");
-    console.log("e.target.checked = ", e.target.checked);
     setForm({ ...form, is_favourite: e.target.checked });
   }
 
@@ -31,8 +29,6 @@ export function FormEdit({ resource }) {
 
   async function handleOnSubmit(e) {
     e.preventDefault();
-    console.log("HANDLE ON SUBMIT FORM FLOW BITE");
-    console.log("disatch form... get AT and then dispatch");
     const accessToken = await getAccessTokenSilently();
     const formParsed = {
       ...form,
