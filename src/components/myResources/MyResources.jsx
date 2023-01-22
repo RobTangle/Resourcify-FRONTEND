@@ -10,6 +10,7 @@ export function MyResources({ isLoggedIn }) {
       {isLoggedIn === true && (
         <div className="mt-5">
           <hr />
+          {/* <h2 className="p-2">My resources </h2> */}
           {renderizedState.loading && (
             <div className="h3">
               <h3>Loading...</h3>
@@ -23,15 +24,11 @@ export function MyResources({ isLoggedIn }) {
           )}
           {renderizedState?.length === 0 && (
             <>
-              <h3>
-                You don't have any resource saved in the data base. What are you
-                waiting for?!
-              </h3>
+              <h3>Nothing to show...</h3>
             </>
           )}
           {renderizedState?.length > 0 && (
             <>
-              <h2 className="p-2">My resources </h2>
               <div className="flex flex-row flex-wrap">
                 {renderizedState.map((resource) => {
                   return <Card resource={resource} key={Math.random()} />;
