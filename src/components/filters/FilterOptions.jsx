@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { filterElements, resetRenderized } from "../../redux/features/resource";
 import { CategoryCheckbox } from "../filters/CategoryCheckbox";
 import { KeywordCheckbox } from "./KeywordCheckbox";
+import { setFilterState } from "../../redux/features/resource";
 
 export function FilterOptions({ isLoggedIn }) {
   const userProfileState = useSelector((state) => state.user?.userProfile);
@@ -39,6 +40,7 @@ export function FilterOptions({ isLoggedIn }) {
     dispatch(
       filterElements(filterObject, userProfileState.resources, toggleAND)
     );
+    dispatch(setFilterState({ ...filterObject, toggleAND }));
   }
 
   function handleCleanFilters() {
@@ -47,6 +49,9 @@ export function FilterOptions({ isLoggedIn }) {
       categories: [],
       keywords: [],
     });
+    dispatch(
+      setFilterState({ categories: [], keywords: [], toggleAND: false })
+    );
   }
 
   return (
