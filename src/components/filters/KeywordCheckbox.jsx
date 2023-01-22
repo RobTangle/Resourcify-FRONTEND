@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export function KeywordCheckbox({ keyword, filterObject, setFilterObject }) {
   const dispatch = useDispatch();
@@ -7,8 +7,9 @@ export function KeywordCheckbox({ keyword, filterObject, setFilterObject }) {
   function handleChange(event) {
     const { value } = event.target;
 
-    return setFilterObject((filterObject) => {
-      let updatedKeywords = [...filterObject.keywords];
+    setFilterObject((filterObject) => {
+      console.log("set filter object en KEYWORD");
+      updatedKeywords = [...filterObject.keywords];
       if (!updatedKeywords.includes(value)) {
         updatedKeywords.push(value);
       } else {
@@ -26,14 +27,14 @@ export function KeywordCheckbox({ keyword, filterObject, setFilterObject }) {
       <li>
         <input
           type="checkbox"
-          id={keyword}
+          id={`${keyword}-kw`}
           value={keyword}
           required=""
           className="hidden peer"
           onChange={handleChange}
         />
         <label
-          htmlFor={keyword}
+          htmlFor={`${keyword}-kw`}
           className={`${
             updatedKeywords.includes(keyword)
               ? " inline-flex justify-between w-full p-2 text-gray-100 bg-blue-700 hover:bg-blue-800 border-2 border-gray-200 font-medium rounded-lg text-sm px-7 py-2.5 text-center cursor-pointer dark:hover:text-gray-300 dark:border-gray-700"

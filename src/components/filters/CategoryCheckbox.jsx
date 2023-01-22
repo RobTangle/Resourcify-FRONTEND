@@ -1,4 +1,4 @@
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 
 export function CategoryCheckbox({ category, filterObject, setFilterObject }) {
   const dispatch = useDispatch();
@@ -7,8 +7,9 @@ export function CategoryCheckbox({ category, filterObject, setFilterObject }) {
   function handleChange(event) {
     const { value } = event.target;
 
-    return setFilterObject((filterObject) => {
-      let updatedCategories = [...filterObject.categories];
+    setFilterObject((filterObject) => {
+      console.log("set filter object en CATEGORY");
+      updatedCategories = [...filterObject.categories];
       if (!updatedCategories.includes(value)) {
         updatedCategories.push(value);
       } else {
@@ -26,14 +27,14 @@ export function CategoryCheckbox({ category, filterObject, setFilterObject }) {
       <li>
         <input
           type="checkbox"
-          id={category}
+          id={`${category}-cat`}
           value={category}
           required=""
           className="hidden peer"
           onChange={handleChange}
         />
         <label
-          htmlFor={category}
+          htmlFor={`${category}-cat`}
           className={`${
             updatedCategories.includes(category)
               ? " inline-flex justify-between w-full p-2 text-gray-100 bg-blue-700 hover:bg-blue-800 border-2 border-gray-200 font-medium rounded-lg text-sm px-7 py-2.5 text-center cursor-pointer dark:hover:text-gray-300 dark:border-gray-700"

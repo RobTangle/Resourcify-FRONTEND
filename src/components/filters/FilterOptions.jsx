@@ -8,24 +8,30 @@ import { KeywordCheckbox } from "./KeywordCheckbox";
 // import { useAuth0 } from "@auth0/auth0-react";
 
 export function FilterOptions({ isLoggedIn }) {
-  const dispatch = useDispatch();
   const userProfileState = useSelector((state) => state.user?.userProfile);
-  console.log("userProfileState", userProfileState);
-  const categoriesArray =
-    userProfileState?.groupedDocs && Object.keys(userProfileState.groupedDocs);
-
-  console.log("categoriesArray", categoriesArray);
-
-  let getUserKeywords = userProfileState?.resources
-    ?.map((r) => r.keywords)
-    ?.flat();
-  let allUserKeywords = [...new Set(getUserKeywords)].sort();
-  console.log("allUserKeywords", allUserKeywords);
 
   const [filterObject, setFilterObject] = useState({
     categories: [],
     keywords: [],
   });
+
+  const dispatch = useDispatch();
+  // console.log("userProfileState", userProfileState);
+
+  const categoriesArray =
+    userProfileState?.groupedDocs && Object.keys(userProfileState.groupedDocs);
+
+  // console.log("categoriesArray", categoriesArray);
+
+  let getUserKeywords = userProfileState?.resources
+    ?.map((r) => r.keywords)
+    ?.flat();
+
+  let keywordsArray = [...new Set(getUserKeywords)]
+    .filter((keyword) => keyword !== "")
+    .sort();
+  // console.log("keywordsArray", keywordsArray);
+
   console.log("filterObject", filterObject);
 
   // const { getAccessTokenSilently } = useAuth0();
@@ -79,7 +85,7 @@ export function FilterOptions({ isLoggedIn }) {
             </ul>
             <h2 className="p-2 text-left mx-2">Choose Keywords </h2>
             <ul className="grid w-full gap-5 md:grid-cols-9 mx-3">
-              {allUserKeywords?.map((keyword) => {
+              {keywordsArray?.map((keyword) => {
                 return (
                   <KeywordCheckbox
                     keyword={keyword}
