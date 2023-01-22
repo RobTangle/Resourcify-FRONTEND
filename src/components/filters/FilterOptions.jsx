@@ -17,6 +17,8 @@ export function FilterOptions({ isLoggedIn }) {
 
   const dispatch = useDispatch();
 
+  const groupedDocs = userProfileState?.groupedDocs;
+
   const categoriesArray =
     userProfileState?.groupedDocs && Object.keys(userProfileState.groupedDocs);
 
@@ -62,6 +64,7 @@ export function FilterOptions({ isLoggedIn }) {
                 return (
                   <CategoryCheckbox
                     category={category}
+                    catLength={groupedDocs?.[category]?.length}
                     filterObject={filterObject}
                     setFilterObject={setFilterObject}
                     key={Math.random()}
@@ -104,10 +107,9 @@ export function FilterOptions({ isLoggedIn }) {
             <div className="grid w-full gap-5 md:grid-cols-8 mx-3 my-5">
               <button
                 onClick={onClickRenderizeFilters}
-                className="bg-blue-200 text-gray-600 hover:bg-gray-200 dark:text-gray-400 dark:bg-gray-800 dark:hover:bg-gray-700"
+                className="bg-blue-200 text-gray-600 hover:bg-gray-200 dark:text-white dark:bg-blue-600 dark:hover:bg-blue-700"
               >
-                {" "}
-                Apply Filters{" "}
+                Apply Filters
               </button>
               <button onClick={handleCleanFilters}> Clear </button>
             </div>
