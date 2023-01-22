@@ -6,10 +6,7 @@ import { useAuth0 } from "@auth0/auth0-react";
 
 export function MyResources({ isLoggedIn }) {
   const dispatch = useDispatch();
-  const renderizedState = useSelector(
-    (state) => state.resource?.renderized
-  );
-  
+  const renderizedState = useSelector((state) => state.resource?.renderized);
 
   const { getAccessTokenSilently } = useAuth0();
 
