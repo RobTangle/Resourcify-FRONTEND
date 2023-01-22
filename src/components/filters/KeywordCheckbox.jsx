@@ -1,4 +1,9 @@
-export function KeywordCheckbox({ keyword, filterObject, setFilterObject }) {
+export function KeywordCheckbox({
+  keyword,
+  filterObject,
+  setFilterObject,
+  keyLength,
+}) {
   let updatedKeywords = [...filterObject.keywords];
 
   function handleChange(event) {
@@ -20,7 +25,7 @@ export function KeywordCheckbox({ keyword, filterObject, setFilterObject }) {
 
   return (
     <>
-      <li>
+      <li className="relative">
         <input
           type="checkbox"
           id={`${keyword}-kw`}
@@ -41,6 +46,9 @@ export function KeywordCheckbox({ keyword, filterObject, setFilterObject }) {
             <div className="w-full font-medium text-center">{keyword}</div>
           </div>
         </label>
+        <div class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-black bg-yellow-600 border-2 border-white rounded-full -top-2 -right-2 dark:border-gray-900">
+          {keyLength}
+        </div>
       </li>
     </>
   );

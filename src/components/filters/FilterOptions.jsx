@@ -26,11 +26,14 @@ export function FilterOptions({ isLoggedIn }) {
     ?.map((r) => r.keywords)
     ?.flat();
 
+  const objOfKeywords = getUserKeywords.reduce((acc, curr) => {
+    acc[curr] = (acc[curr] || 0) + 1;
+    return acc;
+  }, {});
+
   let keywordsArray = [...new Set(getUserKeywords)]
     .filter((keyword) => keyword !== "")
     .sort();
-
-  console.log("filterObject", filterObject);
 
   function onClickRenderizeFilters() {
     dispatch(
@@ -100,6 +103,7 @@ export function FilterOptions({ isLoggedIn }) {
                     filterObject={filterObject}
                     setFilterObject={setFilterObject}
                     key={Math.random()}
+                    keyLength={objOfKeywords?.[keyword]}
                   />
                 );
               })}
