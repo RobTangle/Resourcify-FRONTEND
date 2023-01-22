@@ -1,12 +1,18 @@
 import React from "react";
 import { useAuth0 } from "@auth0/auth0-react";
+import { useNavigate } from "react-router-dom";
 
 export const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
+  const navigate = useNavigate();
   console.log("USER = ", user);
-  if (isLoading) {
-    return <div>Loading ...</div>;
-  }
+
+  React.useEffect(() => {
+    if (!isLoading && !isAuthenticated) {
+      console.log("navegando a landing");
+      navigate("/");
+    }
+  }, [isLoading]);
 
   return (
     isAuthenticated && (

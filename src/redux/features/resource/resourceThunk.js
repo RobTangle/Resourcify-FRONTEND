@@ -7,14 +7,14 @@ import {
 } from "../../../helpers/URLs";
 import { setUserProfile } from "../user/userSlice";
 import { filterResources } from "../../../helpers/filterResources";
-import { setRenderized } from "./resourceSlice";
+import { setRenderized, setFilter } from "./resourceSlice";
 import {
   SwalErrorMX,
   ToastErrorMX,
   ToastSuccessMX,
 } from "../../../helpers/swals";
 
-export function createResource(form, setForm, accessToken) {
+export function createResource(form, setForm, accessToken, filterState) {
   return async function (dispatch) {
     try {
       const response = await axios.post(
@@ -36,7 +36,18 @@ export function createResource(form, setForm, accessToken) {
         });
       }
       // La request me responde con el usuario actualizado:
-      return dispatch(setUserProfile(response.data));
+
+      dispatch(setUserProfile(response.data));
+      // dispatch(setRenderized(response.data.resources));
+      dispatch(
+        filterElements(
+          filterState,
+          response.data.resources,
+          filterState.toggleAND
+        )
+      );
+      console.log("filterState = ", filterState);
+      console.log("filterState.toggleAND = ", filterState.toggleAND);
     } catch (error) {
       console.log("error en createNewResource! ", error);
       ToastErrorMX(error).fire();
@@ -90,10 +101,14 @@ export function deleteResource(id, accessToken, renderizedArray) {
   };
 }
 
-export function filterElements(filterObj, userAllResources) {
+export function filterElements(filterObj, userAllResources, toggleAND) {
   return async function (dispatch) {
     try {
-      const filteredElements = filterResources(userAllResources, filterObj);
+      const filteredElements = filterResources(
+        userAllResources,
+        filterObj,
+        toggleAND
+      );
       console.log(
         "Despachando setRenderized con un arreglo de length = ",
         filteredElements.length
@@ -132,6 +147,38 @@ export function renderElemsByKeyword(keyword, userAllResources) {
         arrayFilteredByKeyword.length
       );
       return dispatch(setRenderized(arrayFilteredByKeyword));
+    } catch (error) {
+      SwalErrorMX(error).fire();
+    }
+  };
+}
+
+export function loadingRenderized() {
+  return async function (dispatch) {
+    try {
+      console.log("Despachando loadingRenderized");
+      dispatch(setRenderized({ loading: true }));
+    } catch (error) {
+      SwalErrorMX(error).fire();
+    }
+  };
+}
+
+export function errorRenderized(errorMessage) {
+  return async function (dispatch) {
+    try {
+      console.log("Despachando loadingRenderized");
+      dispatch(setRenderized({ error: errorMessage }));
+    } catch (error) {
+      SwalErrorMX(error).fire();
+    }
+  };
+}
+
+export function setFilterState(filterObj) {
+  return async function (dispatch) {
+    try {
+      dispatch(setFilter(filterObj));
     } catch (error) {
       SwalErrorMX(error).fire();
     }

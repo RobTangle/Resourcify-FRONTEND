@@ -4,7 +4,7 @@ import LoginButton from "../components/login-button/LoginButton";
 
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
-
+import logo from "../assets/logo.png";
 export function Landing() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
@@ -24,8 +24,11 @@ export function Landing() {
       <section className="bg-gray-800 text-gray-100">
         <div className="container flex flex-col justify-center md:gap-5  p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
           <div>
-            <h1>Resourcify</h1>
-            <div className="flex flex-col gap-5 space-y-4  items-center justify-center md:flex-row  md:justify-start">
+            {/* <h1>Resourcify</h1> */}
+            <div className="w-80 ml-auto mr-auto mb-3">
+              <img src={logo} alt="resourcify logo" />
+            </div>
+            <div className="flex flex-col gap-5 space-y-4  items-center justify-center md:flex-row  md:center">
               <LoginButton style="text-black " />
             </div>
           </div>

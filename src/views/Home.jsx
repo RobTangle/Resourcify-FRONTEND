@@ -37,23 +37,31 @@ export function Home() {
   }, [isLoading]);
 
   return (
-    <div>
-      <div className="flex justify-end">
-        <Navbar isLoggedIn={isAuthenticated} />
-      </div>
-      <div className="w-80 ml-auto mr-auto mb-3">
-        <img src={logo} alt="resourcify logo" />
-      </div>
-      {/* <h1>Home</h1> */}
-      {isAuthenticated ? <h2>Welcome, {user?.name}!</h2> : null}
-      {/* <h3>Is Authenticated: {isAuthenticated ? "true" : "false"}</h3> */}
-      <div>
-        <div className="mt-3">
-          <ModalCreateResource />
+    <>
+      {isLoading && (
+        <div>
+          <h3 className="h-3">Loading...</h3>
         </div>
-      </div>
-      <FilterOptions/>
-      <MyResources isLoggedIn={isAuthenticated} />
-    </div>
+      )}
+      {!isLoading && isAuthenticated ? (
+        <div>
+          <div className="flex justify-end">
+            <Navbar isLoggedIn={isAuthenticated} />
+          </div>
+          <div className="w-80 ml-auto mr-auto mb-3">
+            <img src={logo} alt="resourcify logo" />
+          </div>
+          <h2>Welcome, {user?.name}!</h2>
+          <div>
+            <div className="mt-3">
+              <ModalCreateResource />
+            </div>
+          </div>
+
+          <FilterOptions />
+          <MyResources isLoggedIn={isAuthenticated} />
+        </div>
+      ) : null}
+    </>
   );
 }

@@ -3,11 +3,13 @@ import Swal from "sweetalert2";
 import axios from "axios";
 import { header } from "../../../helpers/constants";
 import { URL_U_G_GET_USER, URL_U_PO_CREATE_USER } from "../../../helpers/URLs";
-import { setRenderized } from "../resource";
+import { errorRenderized, loadingRenderized, setRenderized } from "../resource";
 
 export function fetchUserInfo(accessToken) {
+  console.log("fetching user info...");
   return async function (dispatch) {
     try {
+      dispatch(loadingRenderized());
       let response = await axios.get(URL_U_G_GET_USER, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
@@ -24,6 +26,7 @@ export function fetchUserInfo(accessToken) {
         );
         return dispatch(createNewUser(accessToken));
       } else {
+        dispatch(errorRenderized(error.message));
         return Swal.fire({
           title: "Oops! Something went wrong 😥",
           text: error.message,
