@@ -1,4 +1,5 @@
 import { MyResources } from "../components/myResources/MyResources";
+import { FilterOptions } from "../components/filters/FilterOptions";
 import { Navbar } from "../components/navbar/Navbar";
 import { useAuth0 } from "@auth0/auth0-react";
 import React from "react";
@@ -51,6 +52,7 @@ export function Home() {
           <ModalCreateResource />
         </div>
       </div>
+      <FilterOptions/>
       <MyResources isLoggedIn={isAuthenticated} />
     </div>
   );
