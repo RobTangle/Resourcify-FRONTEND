@@ -88,7 +88,7 @@ export function deleteResource(id, accessToken, renderizedArray) {
         URL_S_DE_DELETE_RESOURCE + `/${id}`,
         header(accessToken)
       );
-      console.log("reponse = ", response);
+      // console.log("reponse = ", response);
       if (response.status === 200) {
         ToastSuccessMX("Resource deleted!").fire();
         // La request me responde con el usuario actualizado:
@@ -131,10 +131,6 @@ export function filterElements(
 export function resetRenderized(userAllResources) {
   return async function (dispatch) {
     try {
-      console.log(
-        "Despachando resetRenderized con un arreglo de length = ",
-        userAllResources.length
-      );
       dispatch(setRenderized(userAllResources));
     } catch (error) {
       SwalErrorMX(error).fire();
@@ -143,17 +139,12 @@ export function resetRenderized(userAllResources) {
 }
 
 export function renderElemsByKeyword(keyword, userAllResources) {
-  console.log("userAllResources = ", userAllResources);
-  console.log("ejecutando renderElemesByKeyword con keyword = ", keyword);
   return async function (dispatch) {
     try {
       const arrayFilteredByKeyword = userAllResources.filter((elem) =>
         elem.keywords.some((string) => string == keyword)
       );
-      console.log(
-        "arrayFilteredByKeyword.length = ",
-        arrayFilteredByKeyword.length
-      );
+
       return dispatch(setRenderized(arrayFilteredByKeyword));
     } catch (error) {
       SwalErrorMX(error).fire();
@@ -164,7 +155,6 @@ export function renderElemsByKeyword(keyword, userAllResources) {
 export function loadingRenderized() {
   return async function (dispatch) {
     try {
-      console.log("Despachando loadingRenderized");
       dispatch(setRenderized({ loading: true }));
     } catch (error) {
       SwalErrorMX(error).fire();
@@ -175,7 +165,6 @@ export function loadingRenderized() {
 export function errorRenderized(errorMessage) {
   return async function (dispatch) {
     try {
-      console.log("Despachando loadingRenderized");
       dispatch(setRenderized({ error: errorMessage }));
     } catch (error) {
       SwalErrorMX(error).fire();
