@@ -5,6 +5,7 @@ import LoginButton from "../components/login-button/LoginButton";
 import { useAuth0 } from "@auth0/auth0-react";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { Footer } from "../components/footer/Footer";
 export function Landing() {
   const [isLoggedIn, setIsLoggedIn] = React.useState(false);
 
@@ -33,6 +34,7 @@ export function Landing() {
             </div>
           </div>
         </div>
+        <Footer />
       </section>
     );
   }

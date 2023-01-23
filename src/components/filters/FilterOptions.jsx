@@ -20,18 +20,19 @@ export function FilterOptions() {
 
   const groupedDocs = userProfileState?.groupedDocs;
 
-  const categoriesArray =
-    userProfileState?.groupedDocs && Object.keys(userProfileState.groupedDocs);
-
+  // Get array of categories:
+  const categoriesArray = groupedDocs && Object.keys(groupedDocs);
+  // get all the keywords:
   let getUserKeywords = userProfileState?.resources
     ?.map((r) => r.keywords)
     ?.flat();
-
+  // Create object with {key:keyword : value:number of keyword repeated}
   const objOfKeywords = getUserKeywords?.reduce((acc, curr) => {
     acc[curr] = (acc[curr] || 0) + 1;
     return acc;
   }, {});
 
+  // Create array of unique keywords:
   let keywordsArray = [...new Set(getUserKeywords)]
     .filter((keyword) => keyword !== "")
     .sort();
