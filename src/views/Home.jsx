@@ -9,6 +9,7 @@ import { ModalCreateResource } from "../components/ModalsCreateResource/ModalCre
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
 import { Footer } from "../components/footer/Footer";
+import { SearchBar } from "../components/filters/SearchBar";
 
 export function Home() {
   const { user, isLoading, isAuthenticated, getAccessTokenSilently } =
@@ -58,7 +59,7 @@ export function Home() {
               <ModalCreateResource />
             </div>
           </div>
-
+          <SearchBar />
           <FilterOptions />
           <MyResources isLoggedIn={isAuthenticated} />
         </div>

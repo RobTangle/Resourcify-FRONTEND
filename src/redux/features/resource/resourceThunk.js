@@ -6,7 +6,10 @@ import {
   URL_S_DE_DELETE_RESOURCE,
 } from "../../../helpers/URLs";
 import { setUserProfile } from "../user/userSlice";
-import { filterResources } from "../../../helpers/filterResources";
+import {
+  filterResources,
+  searchObjects,
+} from "../../../helpers/filterResources";
 import { setRenderized, setFilter } from "./resourceSlice";
 import {
   SwalErrorMX,
@@ -103,17 +106,19 @@ export function deleteResource(id, accessToken, renderizedArray) {
   };
 }
 
-export function filterElements(filterObj, userAllResources, toggleAND) {
+export function filterElements(
+  filterObj,
+  userAllResources,
+  toggleAND,
+  toggleFavourites
+) {
   return async function (dispatch) {
     try {
       const filteredElements = filterResources(
         userAllResources,
         filterObj,
-        toggleAND
-      );
-      console.log(
-        "Despachando setRenderized con un arreglo de length = ",
-        filteredElements.length
+        toggleAND,
+        toggleFavourites
       );
       dispatch(setRenderized(filteredElements));
     } catch (error) {
@@ -183,6 +188,17 @@ export function setFilterState(filterObj) {
       dispatch(setFilter(filterObj));
     } catch (error) {
       SwalErrorMX(error).fire();
+    }
+  };
+}
+
+export function searchElementsWithSearchBar(searchInput, userAllResources) {
+  return async function (dispatch) {
+    try {
+      const searchedObjects = searchObjects(searchInput, userAllResources);
+      dispatch(setRenderized(searchedObjects));
+    } catch (error) {
+      ToastErrorMX(error).fire();
     }
   };
 }

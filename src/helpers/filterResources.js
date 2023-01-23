@@ -1,4 +1,9 @@
-export function filterResources(resources, filter, toggleAND) {
+export function filterResources(
+  resources,
+  filter,
+  toggleAND,
+  toggleFavourites
+) {
   return resources.filter((resource) => {
     let isValid = true;
     // Check if resource's category is included in the filter's categories
@@ -19,6 +24,22 @@ export function filterResources(resources, filter, toggleAND) {
         );
       }
     }
+    if (isValid && toggleFavourites === true) {
+      isValid = resource.is_favourite;
+    }
     return isValid;
   });
+}
+
+export function searchObjects(searchInput, objects) {
+  const lowerCaseSearchInput = searchInput.toLowerCase();
+  return objects.filter(
+    (obj) =>
+      obj.title.toLowerCase().includes(lowerCaseSearchInput) ||
+      obj.category.toLowerCase().includes(lowerCaseSearchInput) ||
+      obj.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(lowerCaseSearchInput)
+      ) ||
+      obj.description.toLowerCase().includes(lowerCaseSearchInput)
+  );
 }
