@@ -1,4 +1,4 @@
-export const URL = import.meta.env.VITE_URL || "http://localhost:3131";
+export const URL = import.meta.env.VITE_SERVER_URL || "http://localhost:3131";
 
 //users
 export const URL_U_PO_CREATE_USER = URL + "/user";

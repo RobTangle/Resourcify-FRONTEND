@@ -10,6 +10,7 @@ export function fetchUserInfo(accessToken) {
   return async function (dispatch) {
     try {
       dispatch(loadingRenderized());
+      console.log("URL_U_G_GET_USER = ", URL_U_G_GET_USER);
       let response = await axios.get(URL_U_G_GET_USER, {
         headers: {
           Authorization: `Bearer ${accessToken}`,
