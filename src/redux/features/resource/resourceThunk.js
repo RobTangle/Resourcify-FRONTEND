@@ -6,7 +6,10 @@ import {
   URL_S_DE_DELETE_RESOURCE,
 } from "../../../helpers/URLs";
 import { setUserProfile } from "../user/userSlice";
-import { filterResources } from "../../../helpers/filterResources";
+import {
+  filterResources,
+  searchObjects,
+} from "../../../helpers/filterResources";
 import { setRenderized, setFilter } from "./resourceSlice";
 import {
   SwalErrorMX,
@@ -183,6 +186,17 @@ export function setFilterState(filterObj) {
       dispatch(setFilter(filterObj));
     } catch (error) {
       SwalErrorMX(error).fire();
+    }
+  };
+}
+
+export function searchElementsWithSearchBar(searchInput, userAllResources) {
+  return async function (dispatch) {
+    try {
+      const searchedObjects = searchObjects(searchInput, userAllResources);
+      dispatch(setRenderized(searchedObjects));
+    } catch (error) {
+      ToastErrorMX(error).fire();
     }
   };
 }

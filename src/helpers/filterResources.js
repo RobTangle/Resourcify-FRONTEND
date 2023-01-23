@@ -22,3 +22,16 @@ export function filterResources(resources, filter, toggleAND) {
     return isValid;
   });
 }
+
+export function searchObjects(searchInput, objects) {
+  const lowerCaseSearchInput = searchInput.toLowerCase();
+  return objects.filter(
+    (obj) =>
+      obj.title.toLowerCase().includes(lowerCaseSearchInput) ||
+      obj.category.toLowerCase().includes(lowerCaseSearchInput) ||
+      obj.keywords.some((keyword) =>
+        keyword.toLowerCase().includes(lowerCaseSearchInput)
+      ) ||
+      obj.description.toLowerCase().includes(lowerCaseSearchInput)
+  );
+}
