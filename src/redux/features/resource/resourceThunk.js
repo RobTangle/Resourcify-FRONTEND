@@ -9,6 +9,7 @@ import { setUserProfile } from "../user/userSlice";
 import {
   filterResources,
   searchObjects,
+  sortArrayByOrderKey,
 } from "../../../helpers/filterResources";
 import { setRenderized, setFilter } from "./resourceSlice";
 import {
@@ -197,6 +198,17 @@ export function searchElementsWithSearchBar(searchInput, userAllResources) {
     try {
       const searchedObjects = searchObjects(searchInput, userAllResources);
       dispatch(setRenderized(searchedObjects));
+    } catch (error) {
+      ToastErrorMX(error).fire();
+    }
+  };
+}
+
+export function sortRenderizedByOrder(value, renderizedArray) {
+  return async function (dispatch) {
+    try {
+      const sortedArray = sortArrayByOrderKey(value, renderizedArray);
+      dispatch(setRenderized(sortedArray));
     } catch (error) {
       ToastErrorMX(error).fire();
     }

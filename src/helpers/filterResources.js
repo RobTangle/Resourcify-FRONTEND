@@ -43,3 +43,13 @@ export function searchObjects(searchInput, objects) {
       obj.description.toLowerCase().includes(lowerCaseSearchInput)
   );
 }
+
+export function sortArrayByOrderKey(value, array) {
+  const sortedArray = [...array];
+  if (value === "ASC") {
+    sortedArray.sort((a, b) => (a.order > b.order ? 1 : -1));
+  } else if (value === "DESC") {
+    sortedArray.sort((a, b) => (a.order < b.order ? 1 : -1));
+  }
+  return sortedArray;
+}

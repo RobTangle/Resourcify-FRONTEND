@@ -1,7 +1,11 @@
 import React from "react";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { filterElements, resetRenderized } from "../../redux/features/resource";
+import {
+  filterElements,
+  resetRenderized,
+  sortRenderizedByOrder,
+} from "../../redux/features/resource";
 import { CategoryCheckbox } from "../filters/CategoryCheckbox";
 import { KeywordCheckbox } from "./KeywordCheckbox";
 import { setFilterState } from "../../redux/features/resource";
@@ -9,7 +13,7 @@ import { setFilterState } from "../../redux/features/resource";
 export function FilterOptions() {
   const [isVisible, setIsVisible] = useState(false);
   const userProfileState = useSelector((state) => state.user?.userProfile);
-
+  const renderizedArray = useSelector((state) => state.resource?.renderized);
   const [filterObject, setFilterObject] = useState({
     categories: [],
     keywords: [],
@@ -67,7 +71,11 @@ export function FilterOptions() {
     );
   }
 
-  function handleSortByOrder(e) {}
+  function handleSortByOrder(e) {
+    const value = e.target.id;
+    console.log(value);
+    dispatch(sortRenderizedByOrder(value, renderizedArray));
+  }
 
   return (
     <>
@@ -138,7 +146,7 @@ export function FilterOptions() {
               )}
 
               {/* <div className="grid w-full gap-5 md:grid-cols-8 mx-3 my-5"> */}
-              <div className="flex items-center mx-3 my-3">
+              <div className="flex flex-wrap items-center mx-3 my-3">
                 <label className="relative inline-flex items-center mr-5 ml-3 cursor-pointer">
                   <input
                     type="checkbox"
@@ -158,6 +166,55 @@ export function FilterOptions() {
                   Apply Filters
                 </button>
                 <button onClick={handleCleanFilters}> Clear </button>
+                <div className="m-2 ml-3 flex items-center">
+                  <span>Sort by relevance</span>
+                  <button
+                    className="px-1 ml-3 mr-1"
+                    id="ASC"
+                    onClick={handleSortByOrder}
+                  >
+                    <svg
+                      width="24"
+                      height="24"
+                      id="ASC"
+                      fill="currentColor"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 19.5v-15m0 0l-6.75 6.75M12 4.5l6.75 6.75"
+                      ></path>
+                    </svg>
+                  </button>
+                  <button
+                    className="px-1"
+                    id="DESC"
+                    onClick={handleSortByOrder}
+                  >
+                    <svg
+                      width="24"
+                      id="DESC"
+                      height="24"
+                      fill="currentColor"
+                      stroke="currentColor"
+                      stroke-width="1.5"
+                      viewBox="0 0 24 24"
+                      xmlns="http://www.w3.org/2000/svg"
+                      aria-hidden="true"
+                    >
+                      <path
+                        stroke-linecap="round"
+                        stroke-linejoin="round"
+                        d="M12 4.5v15m0 0l6.75-6.75M12 19.5l-6.75-6.75"
+                      ></path>
+                    </svg>
+                  </button>
+                </div>
               </div>
             </>
           )}
