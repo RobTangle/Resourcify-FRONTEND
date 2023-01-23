@@ -5,11 +5,11 @@ import { useNavigate } from "react-router-dom";
 export const Profile = () => {
   const { user, isAuthenticated, isLoading } = useAuth0();
   const navigate = useNavigate();
-  console.log("USER = ", user);
+  // console.log("USER = ", user);
 
   React.useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      console.log("navegando a landing");
+      // console.log("navegando a landing");
       navigate("/");
     }
   }, [isLoading]);

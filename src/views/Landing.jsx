@@ -13,7 +13,7 @@ export function Landing() {
   const { isLoading, isAuthenticated, getAccessTokenSilently } = useAuth0();
 
   React.useEffect(() => {
-    console.log("RENDERIZANDO MAIN! CAMBIO EN IS LOGGED IN ?");
+    // console.log("RENDERIZANDO MAIN! CAMBIO EN IS LOGGED IN ?");
   }, [isLoggedIn]);
 
   if (!isLoading && isAuthenticated) {

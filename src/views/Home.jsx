@@ -20,20 +20,20 @@ export function Home() {
 
   React.useEffect(() => {
     if (!isLoading && !isAuthenticated) {
-      console.log(
-        "Usuario no autenticado. Redirigiendo al landing para que se loguee"
-      );
+      // console.log(
+      //   "Usuario no autenticado. Redirigiendo al landing para que se loguee"
+      // );
       navigate("/");
     }
     async function handleGetOrCreateUser() {
       if (!isLoading && isAuthenticated) {
         const accessToken = await getAccessTokenSilently();
         dispatch(fetchUserInfo(accessToken));
-        console.log("DESPACHADO FETCH USER INFO.");
+        // console.log("DESPACHADO FETCH USER INFO.");
       }
     }
     if (!userProfile) {
-      console.log("!USER PROFILE. handleGetOrCreateUser() en Home ");
+      // console.log("!USER PROFILE. handleGetOrCreateUser() en Home ");
       handleGetOrCreateUser();
     }
   }, [isLoading]);

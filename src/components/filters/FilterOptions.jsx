@@ -73,7 +73,7 @@ export function FilterOptions() {
 
   function handleSortByOrder(e) {
     const value = e.target.id;
-    console.log(value);
+    // console.log(value);
     dispatch(sortRenderizedByOrder(value, renderizedArray));
   }
 

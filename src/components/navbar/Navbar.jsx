@@ -9,13 +9,13 @@ export function Navbar({ isLoggedIn }) {
 
   React.useEffect(() => {
     if (!token) {
-      console.log("primer useEffect. !token");
+      // console.log("primer useEffect. !token");
       setToken(localStorage.getItem(NAME_ACCESS_TOKEN));
     }
   }, []);
 
   React.useEffect(() => {
-    console.log("Navbar renderizada. useEffect");
+    // console.log("Navbar renderizada. useEffect");
   }, [token]);
 
   return (
