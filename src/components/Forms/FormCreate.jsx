@@ -2,6 +2,9 @@ import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useAuth0 } from "@auth0/auth0-react";
 import { createResource } from "../../redux/features/resource";
+import { URL_S_G_PARSE_LINK } from "../../helpers/URLs";
+import { header } from "../../helpers/constants";
+import axios from "axios";
 
 export function FormCreate() {
   const [form, setForm] = useState({
@@ -25,6 +28,21 @@ export function FormCreate() {
 
   function handleOnChange(e) {
     setForm({ ...form, [e.target.id]: e.target.value });
+  }
+
+  // Esta función hace un Get al servidor para obtener el title de la url, y valoriza el form.title según la respuesta del Get:
+  async function handleOnChangeLink(e) {
+    const accessToken = await getAccessTokenSilently();
+    const response = await axios.get(
+      URL_S_G_PARSE_LINK + e.target.value,
+      header(accessToken)
+    );
+    // const html = await response.text();
+    const html = response.data.html;
+    const parser = new DOMParser();
+    const doc = parser.parseFromString(html, "text/html");
+    const title = doc.querySelector("title").innerText;
+    setForm({ ...form, title, link: e.target.value });
   }
 
   async function handleOnSubmit(e) {
@@ -51,8 +69,7 @@ export function FormCreate() {
           id="link"
           placeholder="https://somewebpage.com/info"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
-          onChange={handleOnChange}
-          value={form.link}
+          onChange={handleOnChangeLink}
           required
         />
       </div>
