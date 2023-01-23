@@ -8,6 +8,7 @@ import { fetchUserInfo } from "../redux/features/user/userThunk";
 import { ModalCreateResource } from "../components/ModalsCreateResource/ModalCreateResource";
 import { useNavigate } from "react-router-dom";
 import logo from "../assets/logo.png";
+import { Footer } from "../components/footer/Footer";
 
 export function Home() {
   const { user, isLoading, isAuthenticated, getAccessTokenSilently } =
@@ -62,6 +63,7 @@ export function Home() {
           <MyResources isLoggedIn={isAuthenticated} />
         </div>
       ) : null}
+      <Footer />
     </>
   );
 }
