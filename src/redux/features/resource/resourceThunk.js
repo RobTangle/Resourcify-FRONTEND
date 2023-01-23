@@ -10,7 +10,7 @@ import {
   filterResources,
   searchObjects,
   sortArrayByOrderKey,
-} from "../../../helpers/filterResources";
+} from "../../../helpers/filterAndSortFns";
 import { setRenderized, setFilter } from "./resourceSlice";
 import {
   SwalErrorMX,
