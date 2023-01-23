@@ -137,8 +137,9 @@ export function FilterOptions() {
                 </div>
               )}
 
-              <div className="grid w-full gap-5 md:grid-cols-8 mx-3 my-5">
-                <label className="relative inline-flex items-center cursor-pointer">
+              {/* <div className="grid w-full gap-5 md:grid-cols-8 mx-3 my-5"> */}
+              <div className="flex items-center mx-3 my-3">
+                <label className="relative inline-flex items-center mr-5 ml-3 cursor-pointer">
                   <input
                     type="checkbox"
                     value=""
@@ -152,7 +153,7 @@ export function FilterOptions() {
                 </label>
                 <button
                   onClick={onClickRenderizeFilters}
-                  className="bg-blue-200 text-gray-600 hover:bg-gray-200 dark:text-white dark:bg-blue-600 dark:hover:bg-blue-700"
+                  className="mr-3 bg-blue-200 text-gray-600 hover:bg-gray-200 dark:text-white dark:bg-blue-600 dark:hover:bg-blue-700"
                 >
                   Apply Filters
                 </button>
