@@ -14,7 +14,7 @@ export function SearchBar() {
   }
 
   return (
-    <form className="flex items-center mt-4" onSubmit={handleOnFormSubmit}>
+    <form className="flex items-center my-4" onSubmit={handleOnFormSubmit}>
       <label htmlFor="simple-search" className="sr-only">
         Search
       </label>
