@@ -106,17 +106,19 @@ export function deleteResource(id, accessToken, renderizedArray) {
   };
 }
 
-export function filterElements(filterObj, userAllResources, toggleAND) {
+export function filterElements(
+  filterObj,
+  userAllResources,
+  toggleAND,
+  toggleFavourites
+) {
   return async function (dispatch) {
     try {
       const filteredElements = filterResources(
         userAllResources,
         filterObj,
-        toggleAND
-      );
-      console.log(
-        "Despachando setRenderized con un arreglo de length = ",
-        filteredElements.length
+        toggleAND,
+        toggleFavourites
       );
       dispatch(setRenderized(filteredElements));
     } catch (error) {
