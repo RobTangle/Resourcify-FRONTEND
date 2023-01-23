@@ -8,8 +8,8 @@ function App() {
       <Routes>
         <Route path="/" element={<Landing />} />
         <Route path="/home" element={<Home />} />
-        <Route path="/signup" element={<Signup />} />
-        <Route path="/profile" element={<Profile />} />
+        {/* <Route path="/signup" element={<Signup />} /> */}
+        {/* <Route path="/profile" element={<Profile />} /> */}
       </Routes>
     </BrowserRouter>
   );
