@@ -9,7 +9,7 @@ export function ModalEditResource({ resource }) {
     <Popup
       trigger={
         <button
-          className="inline-block p-1 h-6 w-6 text-gray-700 hover:bg-gray-50 focus:relative dark:text-gray-200 dark:hover:bg-gray-800"
+          className="inline-block p-1 h-6 w-6 text-gray-200 hover:bg-gray-800 focus:relative dark:text-gray-200 dark:hover:bg-gray-800"
           title="Edit Product"
         >
           <svg

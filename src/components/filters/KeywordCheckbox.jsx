@@ -38,8 +38,8 @@ export function KeywordCheckbox({
           htmlFor={`${keyword}-kw`}
           className={`${
             updatedKeywords.includes(keyword)
-              ? " inline-flex justify-between  p-2 text-gray-100 bg-blue-700 hover:bg-blue-800 border border-gray-200 font-medium rounded-lg text-sm px-3 py-2.5 text-center cursor-pointer dark:hover:text-gray-300 dark:border-gray-700"
-              : "inline-flex justify-between  p-2 peer-checked:border-blue-600 font-medium text-sm px-3 py-2.5 hover:text-gray-200 dark:peer-checked:text-gray-300 border border-blue-900 rounded-lg peer-checked:text-gray-600 hover:bg-gray-50 dark:text-gray-400 cursor-pointer dark:bg-gray-800 dark:hover:bg-gray-700"
+              ? " inline-flex justify-between  p-2 text-gray-100 bg-blue-700 hover:bg-blue-800 border border-gray-700 font-medium rounded-lg text-sm px-3 py-2.5 text-center cursor-pointer dark:hover:text-gray-700 dark:border-gray-700"
+              : "inline-flex justify-between  p-2 peer-checked:border-blue-600 font-medium text-sm px-3 py-2.5 hover:text-gray-200 dark:peer-checked:text-gray-300 border border-blue-900 rounded-lg peer-checked:text-gray-600 hover:bg-gray-700 dark:text-gray-400 cursor-pointer dark:bg-gray-800  bg-gray-800 dark:hover:bg-gray-700"
           }`}
         >
           <div className="block">

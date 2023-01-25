@@ -1,7 +1,7 @@
 export function Footer() {
   return (
-    <div className="px-4 py-5 my-5 bg-gray-100 dark:bg-gray-800 md:flex md:items-center md:justify-between">
-      <span className="text-sm text-gray-500 dark:text-gray-400 sm:text-center">
+    <div className="px-4 py-5 my-5 bg-gray-800 dark:bg-gray-800 md:flex md:items-center md:justify-between">
+      <span className="text-sm text-gray-400 dark:text-gray-400 sm:text-center">
         © 2023 <a href="https://flowbite.com/">Resourcify™</a>. All Rights
         Reserved.
       </span>
@@ -9,7 +9,7 @@ export function Footer() {
         <a
           href="https://github.com/RobTangle/Resourcify-FRONTEND"
           target="_blank"
-          className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          className="text-gray-400 hover:text-gray-100 dark:hover:text-white"
         >
           <svg
             className="w-5 h-5"
@@ -27,7 +27,7 @@ export function Footer() {
         </a>
         <a
           href="#"
-          className="text-gray-400 hover:text-gray-900 dark:hover:text-white"
+          className="text-gray-400 hover:text-gray-100 dark:hover:text-white"
         >
           <svg
             className="w-5 h-5"
