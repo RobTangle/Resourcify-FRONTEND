@@ -32,6 +32,7 @@ export function FormCreate() {
 
   // Esta función hace un Get al servidor para obtener el title de la url, y valoriza el form.title según la respuesta del Get:
   async function handleOnChangeLink(e) {
+    setForm({ ...form, link: e.target.value });
     const accessToken = await getAccessTokenSilently();
     const response = await axios.get(
       URL_S_G_PARSE_LINK + e.target.value,
@@ -70,6 +71,7 @@ export function FormCreate() {
           placeholder="https://somewebpage.com/info"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChangeLink}
+          value={form.link}
           required
         />
       </div>
@@ -130,6 +132,7 @@ export function FormCreate() {
         <input
           type="number"
           min={0}
+          max={99}
           id="order"
           className="shadow-sm bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500 dark:shadow-sm-light"
           onChange={handleOnChange}
