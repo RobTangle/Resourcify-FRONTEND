@@ -23,8 +23,8 @@ export function Landing() {
   } else if (!isLoading && !isAuthenticated) {
     return (
       <section className="bg-gray-800 text-gray-100">
-        <div className="container flex flex-col justify-center md:gap-5  p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
-          <div>
+        <div className="container  flex-col justify-center md:gap-5  p-6 mx-auto sm:py-12 lg:py-24 lg:flex-row lg:justify-between">
+          <div className="h-96 my-10">
             {/* <h1>Resourcify</h1> */}
             <div className="w-80 ml-auto mr-auto mb-3">
               <img src={logo} alt="resourcify logo" />

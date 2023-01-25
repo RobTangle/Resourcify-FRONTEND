@@ -6,7 +6,7 @@ import { URL_U_G_GET_USER, URL_U_PO_CREATE_USER } from "../../../helpers/URLs";
 import { errorRenderized, loadingRenderized, setRenderized } from "../resource";
 
 export function fetchUserInfo(accessToken) {
-  console.log("fetching user info...");
+  // console.log("fetching user info...");
   return async function (dispatch) {
     try {
       dispatch(loadingRenderized());
