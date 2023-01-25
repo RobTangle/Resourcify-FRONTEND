@@ -38,7 +38,7 @@ export function Card({ resource }) {
   }
 
   return (
-    <div className="max-w-sm p-6 bg-white border border-gray-200 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 m-1 ">
+    <div className="max-w-sm p-6 bg-gray-800 border border-gray-700 rounded-lg shadow-md dark:bg-gray-800 dark:border-gray-700 m-1 ">
       <div id="card-header" className="flex">
         {/* <span
           id="rel"
@@ -48,7 +48,7 @@ export function Card({ resource }) {
         </span> */}
         <span
           id="cat"
-          className="bg-blue-100 text-blue-800 text-s font-medium mr-0 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 mx-auto"
+          className="bg-gray-700 text-blue-400 text-s font-medium mr-0 px-2.5 py-0.5 rounded dark:bg-gray-700 dark:text-blue-400 border border-blue-400 mx-auto"
         >
           {resource.category}
         </span>
@@ -61,14 +61,14 @@ export function Card({ resource }) {
         )}
       </div>
 
-      <h5 className="break-words mb-2 text-2xl font-semibold tracking-tight text-gray-900 dark:text-white">
+      <h5 className="break-words mb-2 text-2xl font-semibold tracking-tight text-white dark:text-white">
         {resource.title}
       </h5>
 
       <div>
         <p
           id="description-p"
-          className="mb-1 font-normal text-gray-500 dark:text-gray-400"
+          className="mb-1 font-normal text-gray-400 dark:text-gray-400"
           style={{
             overflow: showFullDescription ? "visible" : "hidden",
             textOverflow: showFullDescription ? "clip" : "ellipsis",
@@ -114,7 +114,7 @@ export function Card({ resource }) {
               if (keyword) {
                 return (
                   <span
-                    className="cursor-pointer break-words bg-gray-100 text-gray-800 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
+                    className="cursor-pointer break-words bg-gray-700 text-gray-300 text-xs font-medium mr-2 px-2.5 py-0.5 rounded-full dark:bg-gray-700 dark:text-gray-300"
                     key={Math.random()}
                     id={keyword}
                     onClick={handleOnClickKeyword}
@@ -127,11 +127,11 @@ export function Card({ resource }) {
           : null}
       </div>
       <div className="flex justify-center px-0 mt-2">
-        <span className="inline-flex divide-x overflow-hidden rounded-md border bg-white shadow-sm dark:divide-grey-900 dark:border-gray-800 dark:bg-gray-800">
+        <span className="inline-flex divide-x overflow-hidden rounded-md border bg-gray-800  border-gray-800 shadow-sm dark:divide-grey-900 dark:border-gray-800 dark:bg-gray-800">
           <ModalEditResource resource={resource} />
 
           <button
-            className="inline-block p-1 h-6 w-6 text-gray-700 hover:bg-gray-50 focus:relative dark:text-gray-200 dark:hover:bg-gray-800 ml-0.5"
+            className="inline-block p-1 h-6 w-6 text-gray-700 hover:bg-gray-800 focus:relative dark:text-gray-200 dark:hover:bg-gray-800 ml-0.5"
             title="Delete Product"
             onClick={handleOnClickDelete}
           >
@@ -140,7 +140,7 @@ export function Card({ resource }) {
               fill="none"
               viewBox="0 0 24 24"
               strokeWidth="1.5"
-              stroke="currentColor"
+              stroke="white"
               className="h-4 w-4"
             >
               <path
@@ -151,56 +151,6 @@ export function Card({ resource }) {
             </svg>
           </button>
         </span>
-
-        {/* <button
-          id="dropdownButton"
-          data-dropdown-toggle="dropdown1"
-          className="inline-block text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-gray-200 dark:focus:ring-gray-700 rounded-lg text-sm p-1.5"
-          type="button"
-        >
-          <span className="sr-only">Open dropdown</span>
-          <svg
-            className="w-6 h-6"
-            aria-hidden="true"
-            fill="currentColor"
-            viewBox="0 0 20 20"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            <path d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z"></path>
-          </svg>
-        </button> */}
-        {/* <!-- Dropdown menu --> */}
-        <div
-          id="dropdown1"
-          className="z-10 hidden text-base list-none bg-white divide-y divide-gray-100 rounded shadow w-44 dark:bg-gray-700"
-        >
-          <ul className="py-1" aria-labelledby="dropdownButton">
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-              >
-                Edit
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-              >
-                Export Data
-              </a>
-            </li>
-            <li>
-              <a
-                href="#"
-                className="block px-4 py-2 text-sm text-red-600 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
-              >
-                Delete
-              </a>
-            </li>
-          </ul>
-        </div>
       </div>
     </div>
   );
